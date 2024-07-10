@@ -244,6 +244,8 @@ public:
         return massima;
     }
         //  Qualità(){};
+
+// QUI è PASSATO LO SPIRITO DI RANZATO
 };
     
 
