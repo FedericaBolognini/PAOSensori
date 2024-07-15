@@ -138,7 +138,6 @@ public:
    * @param record:                     valore della modifica
    * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
    */
-
   void updateTemperaturaRecord(unsigned int posizione, double record);
 
   /**

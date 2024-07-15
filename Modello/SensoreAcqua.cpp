@@ -1,16 +1,16 @@
 #include "SensoreAcqua.h"
 
 SensoreAcqua::SensoreAcqua()
-    :MinValidAlcalinità(800), MaxValidAlcalinità(1000), MinValidAcidità(210000), MaxValidAcidità(300000), Alcalinità(), Acidità(){}
+    : MinValidAlcalinità(800), MaxValidAlcalinità(1000), MinValidAcidità(210000), MaxValidAcidità(300000), Alcalinità(), Acidità() {}
 
 SensoreAcqua::SensoreAcqua(const std::string &Nome, unsigned int Precisione,
-                 unsigned int ID, double MinValidTemperatura,
-                 double MaxValidTemperatura, int MinValidAlcalinità; int MaxValidAlcalinità;int MinValidAcidità; int MinValidAcidità)
-    :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
+                           unsigned int ID, double MinValidTemperatura,
+                           double MaxValidTemperatura, int MinValidAlcalinità, int MaxValidAlcalinità, int MaxValidAcidità, int MinValidAcidità)
+    : Sensore(Nome, Precisione, ID, MinValidTemperatura, MaxValidTemperatura),
       MinValidAlcalinità(MinValidAlcalinità <= MaxValidAlcalinità ? MinValidAlcalinità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità minimo di salubrità superiore alla massima!")),
-      MaxValidAlcalinità(MinValidAlcalinità <= MaxValidAlcalinità ? MaxValidAlcalinità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità massima di salubrità inferiore alla minima!")) 
-      MinValidAcidità(MinValidAcidità <= MaxValidAcidità ? MinValidAcidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità minimo di salubrità superiore alla massima!")),
-      MaxValidAcidità(MinValidAcidità <= MaxValidAcidità ? MaxValidAcidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità massima di salubrità inferiore alla minima!")) {} 
+      MaxValidAlcalinità(MinValidAlcalinità <= MaxValidAlcalinità ? MaxValidAlcalinità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità massima di salubrità inferiore alla minima!")),
+      MinValidAcidità(MinValidAcidità <= MaxValidAcidità ? MinValidAcidità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità minimo di salubrità superiore alla massima!")),
+      MaxValidAcidità(MinValidAcidità <= MaxValidAcidità ? MaxValidAcidità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità massima di salubrità inferiore alla minima!")) {}
 
 int SensoreAcqua::getMinValidAlcalinità() const
 {
@@ -41,7 +41,7 @@ void SensoreAcqua::setMinValidAlcalinità(int MinValidAlcalinità)
   this->MinValidAlcalinità = MinValidAlcalinità;
 }
 
-void SensoreAcqua::setMaxValidAlcalinità(double MaxValidAlcalinità)
+void SensoreAcqua::setMaxValidAlcalinità(int MaxValidAlcalinità)
 {
   if (MinValidAlcalinità > MaxValidAlcalinità)
   {
@@ -49,7 +49,6 @@ void SensoreAcqua::setMaxValidAlcalinità(double MaxValidAlcalinità)
   }
   this->MaxValidAlcalinità = MaxValidAlcalinità;
 }
-
 
 void SensoreAcqua::setMinValidAcidità(int MinValidAcidità)
 {
@@ -60,7 +59,7 @@ void SensoreAcqua::setMinValidAcidità(int MinValidAcidità)
   this->MinValidAcidità = MinValidAcidità;
 }
 
-void SensoreAcqua::setMaxValidAcidità(double MaxValidAcidità)
+void SensoreAcqua::setMaxValidAcidità(int MaxValidAcidità)
 {
   if (MinValidAcidità > MaxValidAcidità)
   {
@@ -157,4 +156,101 @@ int SensoreAcqua::MaxAcidità() const
     }
   }
   return massima;
+}
+
+void SensoreAcqua::addAlcalinitàRecord(int record)
+{
+  Alcalinità.push_back(record);
+}
+
+void SensoreAcqua::removeAlcalinitàRecord(unsigned int posizione)
+{
+  if (posizione > Alcalinità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = Alcalinità.begin();
+  std::advance(elem, posizione);
+  Alcalinità.erase(elem);
+}
+
+int SensoreAcqua::getAlcalinitàRecord(unsigned int posizione)
+{
+  if (posizione > Alcalinità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return Alcalinità.at(posizione);
+}
+
+void SensoreAcqua::insertAlcalinitàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Alcalinità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  Alcalinità.insert(Alcalinità.begin() + posizione, record);
+}
+
+void SensoreAcqua::updateAlcalinitàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Alcalinità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  Alcalinità[posizione] = record;
+}
+
+void SensoreAcqua::addAciditàRecord(int record)
+{
+  Acidità.push_back(record);
+}
+
+void SensoreAcqua::removeAciditàRecord(unsigned int posizione)
+{
+  if (posizione > Acidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = Acidità.begin();
+  std::advance(elem, posizione);
+  Acidità.erase(elem);
+}
+
+int SensoreAcqua::getAciditàRecord(unsigned int posizione)
+{
+  if (posizione > Acidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return Acidità.at(posizione);
+}
+
+void SensoreAcqua::insertAciditàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Acidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  Acidità.insert(Acidità.begin() + posizione, record);
+}
+
+void SensoreAcqua::updateAciditàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Acidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  Acidità[posizione] = record;
+}
+
+SensoreAcqua *SensoreAcqua::clone() const
+{
+    return new SensoreAcqua(*this);
 }

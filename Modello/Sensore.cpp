@@ -84,9 +84,7 @@ void Sensore::updateTemperaturaRecord(unsigned int posizione, double record)
 
   }
   Temperatura[posizione]=record;
-
 }
-
 
 void Sensore::setNome(const std::string &Nome)
 {

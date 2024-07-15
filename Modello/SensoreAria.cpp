@@ -5,7 +5,7 @@ SensoreAria::SensoreAria()
 
 SensoreAria::SensoreAria(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
-                 double MaxValidTemperatura, int MinValidCO2; int MaxValidCO2;int MinValidOssigeno; int MinValidOssigeno)
+                 double MaxValidTemperatura, int MinValidCO2, int MaxValidCO2, int MaxValidOssigeno, int MinValidOssigeno)
     :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
       MinValidCO2(MinValidCO2 <= MaxValidCO2 ? MinValidCO2 : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 minimo di salubrità superiore alla massima!")),
       MaxValidCO2(MinValidCO2 <= MaxValidCO2 ? MaxValidCO2 : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 massima di salubrità inferiore alla minima!")),
@@ -41,7 +41,7 @@ void SensoreAria::setMinValidCO2(int MinValidCO2)
   this->MinValidCO2 = MinValidCO2;
 }
 
-void SensoreAria::setMaxValidCO2(double MaxValidCO2)
+void SensoreAria::setMaxValidCO2(int MaxValidCO2)
 {
   if (MinValidCO2 > MaxValidCO2)
   {
@@ -60,7 +60,7 @@ void SensoreAria::setMinValidOssigeno(int MinValidOssigeno)
   this->MinValidOssigeno = MinValidOssigeno;
 }
 
-void SensoreAria::setMaxValidOssigeno(double MaxValidOssigeno)
+void SensoreAria::setMaxValidOssigeno(int MaxValidOssigeno)
 {
   if (MinValidOssigeno > MaxValidOssigeno)
   {
@@ -141,7 +141,7 @@ int SensoreAria::MinOssigeno() const
 
 int SensoreAria::MaxOssigeno() const
 {
-  int massima = Temperatura[0];
+  int massima = Ossigeno[0];
   if (Ossigeno.empty())
   {
     throw std::length_error("Il vettore dell' ossigeno è vuoto!");

@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include "Sensore.h"
 
-class SensoreAria:public SensoreAria
+class SensoreAria: public Sensore
 {
 private:
     // Valore minimo dell'intervallo valido di CO2 "ammissibile"
@@ -42,7 +43,7 @@ public:
    * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - 
    * se il range di valori per la temperatura non è corretto - se il range di valori per CO2 non è corretto - se il range di valori per l'ossigeno non è corretto
    */
- SensoreAria(const std::string &Nome, unsigned int Precisione, int ID, double MinValidTemperatura,
+ SensoreAria(const std::string &Nome, unsigned int Precisione, unsigned ID, double MinValidTemperatura,
  double MaxValidTemperatura,int MinValidCO2, int MaxValidCO2, int MinValidOssigeno,int MaxValidOssigeno);
 
  /**
@@ -71,14 +72,14 @@ int getMinValidCO2() const;
    * @throw std::invalid_argument:    se la temperatura minima è superiore alla temperatura massima
    */
 
-  void setMinValidCO2(double MinValidCO2);
+  void setMinValidCO2(int MinValidCO2);
 
   /**
    * @brief setMaxValidCO2:          setter per il valore massimo dell'intervallo valido di CO2 "ammissibile"
    * @param MaxValidCO2:             nuovo valore massimo dell'intervallo valido di CO2 "ammissibile" del sensore
    * @throw std::invalid_argument:   se la temperatura massima è inferiore alla temperatura minima
    */
-  void setMaxValidCO2(double MaxValidCO2);
+  void setMaxValidCO2(int MaxValidCO2);
 
    /**
    * @brief setMinValidOssigeno:           setter per il valore minimo dell'intervallo valido di Ossigeno "ammissibile"
@@ -86,14 +87,14 @@ int getMinValidCO2() const;
    * @throw std::invalid_argument:         se la temperatura minima è superiore alla temperatura massima
    */
 
-  void setMinValidOssigeno(double MinValidCOssigeno);
+  void setMinValidOssigeno(int MinValidCOssigeno);
 
   /**
    * @brief setMaxValidOssigen:        setter per il valore massimo dell'intervallo valido di Ossigeno "ammissibile"
    * @param MaxValidOssigeno:          nuovo valore massimo dell'intervallo valido di Ossigeno "ammissibile" del sensore
    * @throw std::invalid_argument:     se la temperatura massima è inferiore alla temperatura minima
    */
-  void setMaxValidOssigeno(double MaxValidOssigeno);
+  void setMaxValidOssigeno(int MaxValidOssigeno);
   
 
  /**
