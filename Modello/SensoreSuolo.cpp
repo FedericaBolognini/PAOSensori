@@ -6,12 +6,7 @@ SensoreSuolo::SensoreSuolo()
 SensoreSuolo::SensoreSuolo(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
                  double MaxValidTemperatura, int MinValidPH; int MaxValidPH;int MinValidUmidità; int MinValidUmidità)
-    : Nome(Nome != "" ? Nome
-                      : throw std::invalid_argument("Tentativo di creazione di un sensore con nome nullo!")),
-      Precisione(Precisione < 100 ? Precisione : throw std::invalid_argument("Tentativo di creazione di un sensore con una precisione superiore al 100% !")),
-      ID(ID),
-      MinValidTemperatura(MinValidTemperatura <= MaxValidTemperatura ? MinValidTemperatura : throw std::invalid_argument("Tentativo di creazione di un sensore con temperatura minima di salubrità superiore alla massima!")),
-      MaxValidTemperatura(MinValidTemperatura <= MaxValidTemperatura ? MaxValidTemperatura : throw std::invalid_argument("Tentativo di creazione di un sensore con temperatura massima di salubrità inferiore alla minima!"))
+    :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
       MinValidPH(MinValidPH <= MaxValidPH ? MinValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH minimo di salubrità superiore alla massima!")),
       MaxValidPH(MinValidPH <= MaxValidPH ? MaxValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH massima di salubrità inferiore alla minima!")) 
       MinValidUmidità(MinValidUmidità <= MaxValidUmidità ? MinValidUmidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con PH minimo di salubrità superiore alla massima!")),

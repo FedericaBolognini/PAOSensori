@@ -6,14 +6,9 @@ SensoreAria::SensoreAria()
 SensoreAria::SensoreAria(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
                  double MaxValidTemperatura, int MinValidCO2; int MaxValidCO2;int MinValidOssigeno; int MinValidOssigeno)
-    : Nome(Nome != "" ? Nome
-                      : throw std::invalid_argument("Tentativo di creazione di un sensore con nome nullo!")),
-      Precisione(Precisione < 100 ? Precisione : throw std::invalid_argument("Tentativo di creazione di un sensore con una precisione superiore al 100% !")),
-      ID(ID),
-      MinValidTemperatura(MinValidTemperatura <= MaxValidTemperatura ? MinValidTemperatura : throw std::invalid_argument("Tentativo di creazione di un sensore con temperatura minima di salubrità superiore alla massima!")),
-      MaxValidTemperatura(MinValidTemperatura <= MaxValidTemperatura ? MaxValidTemperatura : throw std::invalid_argument("Tentativo di creazione di un sensore con temperatura massima di salubrità inferiore alla minima!"))
+    :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
       MinValidCO2(MinValidCO2 <= MaxValidCO2 ? MinValidCO2 : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 minimo di salubrità superiore alla massima!")),
-      MaxValidCO2(MinValidCO2 <= MaxValidCO2 ? MaxValidCO2 : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 massima di salubrità inferiore alla minima!")) 
+      MaxValidCO2(MinValidCO2 <= MaxValidCO2 ? MaxValidCO2 : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 massima di salubrità inferiore alla minima!")),
       MinValidOssigeno(MinValidOssigeno <= MaxValidOssigeno ? MinValidOssigeno  : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 minimo di salubrità superiore alla massima!")),
       MaxValidOssigeno(MinValidOssigeno <= MaxValidOssigeno ? MaxValidOssigeno  : throw std::invalid_argument("Tentativo di creazione di un sensore con CO2 massima di salubrità inferiore alla minima!")) {} 
 

@@ -76,6 +76,18 @@ void Sensore::insertTemperaturaRecord(unsigned int posizione, double record)
   Temperatura.insert(Temperatura.begin() + posizione, record);
 }
 
+void Sensore::updateTemperaturaRecord(unsigned int posizione, double record)
+{
+  if (posizione > Temperatura.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+
+  }
+  Temperatura[posizione]=record;
+
+}
+
+
 void Sensore::setNome(const std::string &Nome)
 {
   if (Nome == "")

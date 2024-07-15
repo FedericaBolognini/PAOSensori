@@ -143,7 +143,7 @@ int getMinValidAlcalinità() const;
   /**
    * @brief ~SensoreAcqua:                distruttore 
    */
-  virtual ~SensoreAcqua() = default;
+  override ~SensoreAcqua() = default;
 };
 
 

@@ -133,6 +133,15 @@ public:
   void setMaxValidTemperatura(double MaxValidTemperatura);
 
   /**
+   * @brief updateTemperaturaRecord:    update di un valore dell'array delle temperature
+   * @param posizione:                  posizione della modifica da effettuare
+   * @param record:                     valore della modifica
+   * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
+   */
+
+  void updateTemperaturaRecord(unsigned int posizione, double record);
+
+  /**
    * @brief getTemperaturaVector:     getter (per riferimento) del vettore di temperature campionate
    */
   const std::vector<double> &getTemperaturaVector();
