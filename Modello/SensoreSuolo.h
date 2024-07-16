@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdexcept>
 
-class SensoreSuolo:public SensoreSuolo
+class SensoreSuolo:public Sensore
 {
 private:
     // Valore minimo dell'intervallo valido di PH "ammissibile"
@@ -71,14 +71,14 @@ int getMinValidPH() const;
    * @throw std::invalid_argument:    se la temperatura minima è superiore alla temperatura massima
    */
 
-  void setMinValidPH(double MinValidPH);
+  void setMinValidPH(int MinValidPH);
 
   /**
    * @brief setMaxValidPH:          setter per il valore massimo dell'intervallo valido di PH "ammissibile"
    * @param MaxValidPH:             nuovo valore massimo dell'intervallo valido di PH "ammissibile" del sensore
    * @throw std::invalid_argument:   se la temperatura massima è inferiore alla temperatura minima
    */
-  void setMaxValidPH(double MaxValidPH);
+  void setMaxValidPH(int MaxValidPH);
 
    /**
    * @brief setMinValidUmidità:           setter per il valore minimo dell'intervallo valido di Umidità "ammissibile"
@@ -86,14 +86,86 @@ int getMinValidPH() const;
    * @throw std::invalid_argument:         se la temperatura minima è superiore alla temperatura massima
    */
 
-  void setMinValidUmidità(double MinValidCUmidità);
+  void setMinValidUmidità(int MinValidCUmidità);
 
   /**
    * @brief setMaxValidOssigen:        setter per il valore massimo dell'intervallo valido di Umidità "ammissibile"
    * @param MaxValidUmidità:          nuovo valore massimo dell'intervallo valido di Umidità "ammissibile" del sensore
    * @throw std::invalid_argument:     se la temperatura massima è inferiore alla temperatura minima
    */
-  void setMaxValidUmidità(double MaxValidUmidità);
+  void setMaxValidUmidità(int MaxValidUmidità);
+
+  /**
+   * @brief addPHRecord:      metodo per aggiungere un dato al vettore di PH campionati
+   * @param record:            nuovo record da aggiungere al vettore di PH campionate
+   */
+  void addPHRecord(int record);
+
+  /**
+   * @brief removePHRecord:          metodo per rimuovere un dato dal vettore di PH campionati
+   * @param posizione:                posizione dalla quale rimuovere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void removePHRecord(unsigned int posizione);
+
+  /**
+   * @brief getPHRecord:             metodo per ottenere un dato dal vettore di PH campionati
+   * @param posizione:                posizione dalla quale ottenere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  int getPHRecord(unsigned int posizione);
+
+  /**
+   * @brief insertPHRecord:          metodo per inserire un dato nel vettore di PH campionati in una posizione specifica
+   * @param posizione:                posizione dalla quale inserire il dato
+   * @param record:                   nuovo record da aggiungere al vettore di PH campionate
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void insertPHRecord(unsigned int posizione, int record);
+
+  /**
+   * @brief updatePHRecord:            update di un valore dell'array del PH
+   * @param posizione:                  posizione della modifica da effettuare
+   * @param record:                     valore della modifica
+   * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
+   */
+  void updatePHRecord(unsigned int posizione, int record);
+
+    /**
+   * @brief addPHRecord:              metodo per aggiungere un dato vettore dell' Umidità campionati
+   * @param record:                    nuovo record da aggiungere al vettore dell' Umidità campionati
+   */
+  void addUmiditàRecord(int record);
+
+  /**
+   * @brief removeUmiditàRecord:     metodo per rimuovere un dato dal vettore dell' Umidità campionati
+   * @param posizione:                posizione dalla quale rimuovere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void removeUmiditàRecord(unsigned int posizione);
+
+  /**
+   * @brief getUmiditàRecord:        metodo per ottenere un dato dal vettore dell' Umidità campionati
+   * @param posizione:                posizione dalla quale ottenere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  int getUmiditàRecord(unsigned int posizione);
+
+  /**
+   * @brief insertUmiditàRecord:     metodo per inserire un dato nel vettore dell' Umidità campionati in una posizione specifica
+   * @param posizione:                posizione dalla quale inserire il dato
+   * @param record:                   nuovo record da aggiungere dal vettore dell' Umidità campionati
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void insertUmiditàRecord(unsigned int posizione, int record);
+
+  /**
+   * @brief updateUmiditàRecord:       update di un valore dell'array dell' Umidità
+   * @param posizione:                  posizione della modifica da effettuare
+   * @param record:                     valore della modifica
+   * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
+   */
+  void updateUmiditàRecord(unsigned int posizione, int record)
   
 
  /**
@@ -108,42 +180,38 @@ int getMinValidPH() const;
 
   /**
   * @brief MinPH:                   restituisce il valore minimo del vettore del PH campionati
-  * @throw std::length_error         se il vettore delle temperature è vuoto
+  * @throw std::length_error         se il vettore dei PH è vuoto
   */
   int MinPH() const;
 
   /**
    * @brief MaxPH:                  restituisce il valore massimo del vettore del PH campionati
-   * @throw std::length_error        se il vettore delle temperature è vuoto
+   * @throw std::length_error        se il vettore dei PH è vuoto
    */
   int MaxPH() const;
 
   /**
   * @brief MinUmidità:              restituisce il valore minimo del vettore dell'Umidità campionati
-  * @throw std::length_error         se il vettore delle temperature è vuoto
+  * @throw std::length_error         se il vettore dell'Umidità è vuoto
   */
   int MinUmidità() const;
 
   /**
    * @brief MaxUmidità:              restituisce il valore massimo del vettore dell'Umidità campionati
-   * @throw std::length_error        se il vettore delle temperature è vuoto
+   * @throw std::length_error        se il vettore dell'Umidità è vuoto
    */
   int MaxUmidità() const;
 
   /**
    * @brief Qualità:                  restituisce un valore in percentuale che indica la qualità dell'ambiente analizzato
    */
-  virtual int Qualità() const = 0;
+  int Qualità() const override;
 
   /**
    * @brief clone:                    metodo per implementare il clonable pattern per la  gerarchia
    */
   virtual SensoreSuolo *clone() const = 0;
 
-  /**
-   * @brief ~SensoreSuolo:                distruttore 
-   */
-  virtual ~SensoreSuolo() = default;
 };
 
 

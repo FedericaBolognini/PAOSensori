@@ -1,16 +1,16 @@
 #include "SensoreSuolo.h"
 
-SensoreSuolo::SensoreSuolo()
+SensoreSuolo::Sensore()
     :MinValidPH(800), MaxValidPH(1000), MinValidUmidità(210000), MaxValidUmidità(300000), PH(), Umidità(){}
 
-SensoreSuolo::SensoreSuolo(const std::string &Nome, unsigned int Precisione,
+SensoreSuolo::Sensore(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
-                 double MaxValidTemperatura, int MinValidPH; int MaxValidPH;int MinValidUmidità; int MinValidUmidità)
+                 double MaxValidTemperatura, int MinValidPH, int MaxValidPH, int MinValidUmidità; int MinValidUmidità)
     :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
       MinValidPH(MinValidPH <= MaxValidPH ? MinValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH minimo di salubrità superiore alla massima!")),
-      MaxValidPH(MinValidPH <= MaxValidPH ? MaxValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH massima di salubrità inferiore alla minima!")) 
-      MinValidUmidità(MinValidUmidità <= MaxValidUmidità ? MinValidUmidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con PH minimo di salubrità superiore alla massima!")),
-      MaxValidUmidità(MinValidUmidità <= MaxValidUmidità ? MaxValidUmidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con PH massima di salubrità inferiore alla minima!")) {} 
+      MaxValidPH(MinValidPH <= MaxValidPH ? MaxValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH massima di salubrità inferiore alla minima!")),
+      MinValidUmidità(MinValidUmidità <= MaxValidUmidità ? MinValidUmidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con umidità minimo di salubrità superiore alla massima!")),
+      MaxValidUmidità(MinValidUmidità <= MaxValidUmidità ? MaxValidUmidità  : throw std::invalid_argument("Tentativo di creazione di un sensore con umidità massima di salubrità inferiore alla minima!")) {} 
 
 int SensoreSuolo::getMinValidPH() const
 {
@@ -41,7 +41,7 @@ void SensoreSuolo::setMinValidPH(int MinValidPH)
   this->MinValidPH = MinValidPH;
 }
 
-void SensoreSuolo::setMaxValidPH(double MaxValidPH)
+void SensoreSuolo::setMaxValidPH(int MaxValidPH)
 {
   if (MinValidPH > MaxValidPH)
   {
@@ -60,7 +60,7 @@ void SensoreSuolo::setMinValidUmidità(int MinValidUmidità)
   this->MinValidUmidità = MinValidUmidità;
 }
 
-void SensoreSuolo::setMaxValidUmidità(double MaxValidUmidità)
+void SensoreSuolo::setMaxValidUmidità(int MaxValidUmidità)
 {
   if (MinValidUmidità > MaxValidUmidità)
   {
@@ -141,7 +141,7 @@ int SensoreSuolo::MinUmidità() const
 
 int SensoreSuolo::MaxUmidità() const
 {
-  int massima = Temperatura[0];
+  int massima = Umidità[0];
   if (Umidità.empty())
   {
     throw std::length_error("Il vettore dell' Umidità è vuoto!");
@@ -158,3 +158,150 @@ int SensoreSuolo::MaxUmidità() const
   }
   return massima;
 }
+
+void SensoreSuolo::addPHRecord(int record)
+{
+  PH.push_back(record);
+}
+
+void SensoreSuolo::removePHRecord(unsigned int posizione)
+{
+  if (posizione > PH.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = PH.begin();
+  std::advance(elem, posizione);
+  PH.erase(elem);
+}
+
+int SensoreSuolo::getPHRecord(unsigned int posizione)
+{
+  if (posizione > PH.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return PH.at(posizione);
+}
+
+void SensoreSuolo::insertPHRecord(unsigned int posizione, int record)
+{
+  if (posizione > PH.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  PH.insert(PH.begin() + posizione, record);
+}
+
+void SensoreSuolo::updatePHRecord(unsigned int posizione, int record)
+{
+  if (posizione > PH.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  PH[posizione] = record;
+}
+
+void SensoreSuolo::addUmiditàRecord(int record)
+{
+  Umidità.push_back(record);
+}
+
+void SensoreSuolo::removeUmiditàRecord(unsigned int posizione)
+{
+  if (posizione > Umidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = Umidità.begin();
+  std::advance(elem, posizione);
+  Umidità.erase(elem);
+}
+
+int SensoreSuolo::getUmiditàRecord(unsigned int posizione)
+{
+  if (posizione > Umidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return Umidità.at(posizione);
+}
+
+void SensoreSuolo::insertUmiditàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Umidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  Umidità.insert(Umidità.begin() + posizione, record);
+}
+
+void SensoreSuolo::updateUmiditàRecord(unsigned int posizione, int record)
+{
+  if (posizione > Umidità.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  Umidità[posizione] = record;
+}
+
+SensoreSuolo *SensoreSuolo::clone() const
+{
+    return new SensoreSuolo(*this);
+}
+
+int SensoreSuolo::Qualità() const {
+    // Inizializziamo le variabili per calcolare la percentuale di ciascun parametro
+    double percentualeTemperatura = 0.0;
+    double percentualePH = 0.0;
+    double percentualeUmidità = 0.0;
+
+    // Controlliamo il vettore delle temperature
+    if (!Temperatura.empty()) {
+        // Calcoliamo la percentuale di temperature valide
+        int countValidTemperature = 0;
+        for (double temp : Temperatura) {
+            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+                countValidTemperature++;
+            }
+        }
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore del PH
+    if (!PH.empty()) {
+        // Calcoliamo la percentuale di PH valide
+        int countValidPH = 0;
+        for (int PH : PH) {
+            if (PH >= MinValidPH && PH <= MaxValidPH) {
+                countValidPH++;
+            }
+        }
+        percentualePH = (static_cast<double>(countValidPH) / PH.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore dell'Umidità
+    if (!Umidità.empty()) {
+        // Calcoliamo la percentuale di Umidità valido
+        int countValidUmidità = 0;
+        for (int oss : Umidità) {
+            if (oss >= MinValidUmidità && oss <= MaxValidUmidità) {
+                countValidUmidità++;
+            }
+        }
+        percentualeUmidità = (static_cast<double>(countValidUmidità) / Umidità.size()) * 100.0;
+    }
+
+    // Calcoliamo la qualità totale come media delle tre percentuali
+    double qualitàTotale = (percentualeTemperatura + percentualePH + percentualeUmidità) / 3.0;
+
+    // Arrotondiamo il risultato e lo restituiamo come intero
+    return static_cast<int>(qualitàTotale);
+}
+

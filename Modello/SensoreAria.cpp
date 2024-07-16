@@ -1,9 +1,9 @@
 #include "SensoreAria.h"
 
-SensoreAria::SensoreAria()
+SensoreAria::Sensore()
     :MinValidCO2(800), MaxValidCO2(1000), MinValidOssigeno(210000), MaxValidOssigeno(300000), CO2(), Ossigeno(){}
 
-SensoreAria::SensoreAria(const std::string &Nome, unsigned int Precisione,
+SensoreAria::Sensore(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
                  double MaxValidTemperatura, int MinValidCO2, int MaxValidCO2, int MaxValidOssigeno, int MinValidOssigeno)
     :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
@@ -158,3 +158,150 @@ int SensoreAria::MaxOssigeno() const
   }
   return massima;
 }
+
+void SensoreAria::addCO2Record(int record)
+{
+  CO2.push_back(record);
+}
+
+void SensoreAria::removeCO2Record(unsigned int posizione)
+{
+  if (posizione > CO2.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = CO2.begin();
+  std::advance(elem, posizione);
+  CO2.erase(elem);
+}
+
+int SensoreAria::getCO2Record(unsigned int posizione)
+{
+  if (posizione > CO2.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return CO2.at(posizione);
+}
+
+void SensoreAria::insertCO2Record(unsigned int posizione, int record)
+{
+  if (posizione > CO2.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  CO2.insert(CO2.begin() + posizione, record);
+}
+
+void SensoreAria::updateCO2Record(unsigned int posizione, int record)
+{
+  if (posizione > CO2.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  CO2[posizione] = record;
+}
+
+void SensoreAria::addOssigenoRecord(int record)
+{
+  Ossigeno.push_back(record);
+}
+
+void SensoreAria::removeOssigenoRecord(unsigned int posizione)
+{
+  if (posizione > Ossigeno.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
+  }
+
+  auto elem = Ossigeno.begin();
+  std::advance(elem, posizione);
+  Ossigeno.erase(elem);
+}
+
+int SensoreAria::getOssigenoRecord(unsigned int posizione)
+{
+  if (posizione > Ossigeno.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
+  }
+
+  return Ossigeno.at(posizione);
+}
+
+void SensoreAria::insertOssigenoRecord(unsigned int posizione, int record)
+{
+  if (posizione > Ossigeno.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
+  }
+
+  Ossigeno.insert(Ossigeno.begin() + posizione, record);
+}
+
+void SensoreAria::updateOssigenoRecord(unsigned int posizione, int record)
+{
+  if (posizione > Ossigeno.size() - 1)
+  {
+    throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
+  }
+  Ossigeno[posizione] = record;
+}
+
+SensoreAria *SensoreAria::clone() const
+{
+    return new SensoreAria(*this);
+}
+
+int SensoreAria::Qualità() const {
+    // Inizializziamo le variabili per calcolare la percentuale di ciascun parametro
+    double percentualeTemperatura = 0.0;
+    double percentualeCO2 = 0.0;
+    double percentualeOssigeno = 0.0;
+
+    // Controlliamo il vettore delle temperature
+    if (!Temperatura.empty()) {
+        // Calcoliamo la percentuale di temperature valide
+        int countValidTemperature = 0;
+        for (double temp : Temperatura) {
+            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+                countValidTemperature++;
+            }
+        }
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore del CO2
+    if (!CO2.empty()) {
+        // Calcoliamo la percentuale di CO2 valide
+        int countValidCO2 = 0;
+        for (int co2 : CO2) {
+            if (co2 >= MinValidCO2 && co2 <= MaxValidCO2) {
+                countValidCO2++;
+            }
+        }
+        percentualeCO2 = (static_cast<double>(countValidCO2) / CO2.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore dell'ossigeno
+    if (!Ossigeno.empty()) {
+        // Calcoliamo la percentuale di Ossigeno valido
+        int countValidOssigeno = 0;
+        for (int oss : Ossigeno) {
+            if (oss >= MinValidOssigeno && oss <= MaxValidOssigeno) {
+                countValidOssigeno++;
+            }
+        }
+        percentualeOssigeno = (static_cast<double>(countValidOssigeno) / Ossigeno.size()) * 100.0;
+    }
+
+    // Calcoliamo la qualità totale come media delle tre percentuali
+    double qualitàTotale = (percentualeTemperatura + percentualeCO2 + percentualeOssigeno) / 3.0;
+
+    // Arrotondiamo il risultato e lo restituiamo come intero
+    return static_cast<int>(qualitàTotale);
+}
+

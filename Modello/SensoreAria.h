@@ -69,7 +69,7 @@ int getMinValidCO2() const;
    /**
    * @brief setMinValidCO2:           setter per il valore minimo dell'intervallo valido di CO2 "ammissibile"
    * @param MinValidCO2:              nuovo valore minimo dell'intervallo valido di CO2 "ammissibile" del sensore
-   * @throw std::invalid_argument:    se la temperatura minima è superiore alla temperatura massima
+   * @throw std::invalid_argument:    se il valore CO2 minimo è superiore al valore CO2 massimo
    */
 
   void setMinValidCO2(int MinValidCO2);
@@ -77,14 +77,14 @@ int getMinValidCO2() const;
   /**
    * @brief setMaxValidCO2:          setter per il valore massimo dell'intervallo valido di CO2 "ammissibile"
    * @param MaxValidCO2:             nuovo valore massimo dell'intervallo valido di CO2 "ammissibile" del sensore
-   * @throw std::invalid_argument:   se la temperatura massima è inferiore alla temperatura minima
+   * @throw std::invalid_argument:   se il valore CO2 massimo è superiore al valore CO2 minimo
    */
   void setMaxValidCO2(int MaxValidCO2);
 
    /**
    * @brief setMinValidOssigeno:           setter per il valore minimo dell'intervallo valido di Ossigeno "ammissibile"
    * @param MinValidOssigeno:              nuovo valore minimo dell'intervallo valido di Ossigeno "ammissibile" del sensore
-   * @throw std::invalid_argument:         se la temperatura minima è superiore alla temperatura massima
+   * @throw std::invalid_argument:        se il valore di ossigeno minimo è superiore al valore di ossigeno massimo
    */
 
   void setMinValidOssigeno(int MinValidCOssigeno);
@@ -92,7 +92,7 @@ int getMinValidCO2() const;
   /**
    * @brief setMaxValidOssigen:        setter per il valore massimo dell'intervallo valido di Ossigeno "ammissibile"
    * @param MaxValidOssigeno:          nuovo valore massimo dell'intervallo valido di Ossigeno "ammissibile" del sensore
-   * @throw std::invalid_argument:     se la temperatura massima è inferiore alla temperatura minima
+   * @throw std::invalid_argument:     se il valore di ossigeno massimo è superiore al valore di ossigeno minimo
    */
   void setMaxValidOssigeno(int MaxValidOssigeno);
   
@@ -107,44 +107,111 @@ int getMinValidCO2() const;
   */
   const std::vector<int> &getOssigenoVector();
 
+   /**
+   * @brief addCO2Record:      metodo per aggiungere un dato al vettore di CO2 campionati
+   * @param record:            nuovo record da aggiungere al vettore di CO2 campionate
+   */
+  void addCO2Record(int record);
+
+  /**
+   * @brief removeCO2Record:          metodo per rimuovere un dato dal vettore di CO2 campionati
+   * @param posizione:                posizione dalla quale rimuovere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void removeCO2Record(unsigned int posizione);
+
+  /**
+   * @brief getCO2Record:             metodo per ottenere un dato dal vettore di CO2 campionati
+   * @param posizione:                posizione dalla quale ottenere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  int getCO2Record(unsigned int posizione);
+
+  /**
+   * @brief insertCO2Record:          metodo per inserire un dato nel vettore di CO2 campionati in una posizione specifica
+   * @param posizione:                posizione dalla quale inserire il dato
+   * @param record:                   nuovo record da aggiungere al vettore di CO2 campionate
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void insertCO2Record(unsigned int posizione, int record);
+
+  /**
+   * @brief updateCO2Record:            update di un valore dell'array del CO2
+   * @param posizione:                  posizione della modifica da effettuare
+   * @param record:                     valore della modifica
+   * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
+   */
+  void updateCO2Record(unsigned int posizione, int record);
+
+    /**
+   * @brief addCO2Record:              metodo per aggiungere un dato vettore dell' ossigeno campionati
+   * @param record:                    nuovo record da aggiungere al vettore dell' ossigeno campionati
+   */
+  void addOssigenoRecord(int record);
+
+  /**
+   * @brief removeOssigenoRecord:     metodo per rimuovere un dato dal vettore dell' ossigeno campionati
+   * @param posizione:                posizione dalla quale rimuovere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void removeOssigenoRecord(unsigned int posizione);
+
+  /**
+   * @brief getOssigenoRecord:        metodo per ottenere un dato dal vettore dell' ossigeno campionati
+   * @param posizione:                posizione dalla quale ottenere il dato
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  int getOssigenoRecord(unsigned int posizione);
+
+  /**
+   * @brief insertOssigenoRecord:     metodo per inserire un dato nel vettore dell' ossigeno campionati in una posizione specifica
+   * @param posizione:                posizione dalla quale inserire il dato
+   * @param record:                   nuovo record da aggiungere dal vettore dell' ossigeno campionati
+   * @throw std::invalid_argument:    se la posizione indicata eccede i limiti del vettore
+   */
+  void insertOssigenoRecord(unsigned int posizione, int record);
+
+  /**
+   * @brief updateOssigenoRecord:       update di un valore dell'array dell' ossigeno
+   * @param posizione:                  posizione della modifica da effettuare
+   * @param record:                     valore della modifica
+   * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
+   */
+  void updateOssigenoRecord(unsigned int posizione, int record)
+
   /**
   * @brief MinCO2:                   restituisce il valore minimo del vettore del CO2 campionati
-  * @throw std::length_error         se il vettore delle temperature è vuoto
+  * @throw std::length_error         se il vettore del CO2 è vuoto
   */
   int MinCO2() const;
 
   /**
    * @brief MaxCO2:                  restituisce il valore massimo del vettore del CO2 campionati
-   * @throw std::length_error        se il vettore delle temperature è vuoto
+   * @throw std::length_error        se il vettore del CO2 è vuoto
    */
   int MaxCO2() const;
 
   /**
   * @brief MinOssigeno:              restituisce il valore minimo del vettore dell'Ossigeno campionati
-  * @throw std::length_error         se il vettore delle temperature è vuoto
+  * @throw std::length_error         se il vettore dell' ossigeno è vuoto
   */
   int MinOssigeno() const;
 
   /**
    * @brief MaxOssigeno:              restituisce il valore massimo del vettore dell'Ossigeno campionati
-   * @throw std::length_error        se il vettore delle temperature è vuoto
+   * @throw std::length_error        se il vettore dell'ossigeno è vuoto
    */
   int MaxOssigeno() const;
 
   /**
    * @brief Qualità:                  restituisce un valore in percentuale che indica la qualità dell'ambiente analizzato
    */
-  virtual int Qualità() const = 0;
+  int Qualità() const override;
 
   /**
    * @brief clone:                    metodo per implementare il clonable pattern per la  gerarchia
    */
   virtual SensoreAria *clone() const = 0;
-
-  /**
-   * @brief ~SensoreAria:                distruttore 
-   */
-  virtual ~SensoreAria() = default;
 };
 
 

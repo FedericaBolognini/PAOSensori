@@ -206,7 +206,7 @@ int getMinValidAlcalinità() const;
   /**
    * @brief Qualità:                  restituisce un valore in percentuale che indica la qualità dell'ambiente analizzato
    */
-  virtual int Qualità() const;
+  int Qualità() const override;
 
   /**
    * @brief clone:                    metodo per implementare il clonable pattern per la  gerarchia

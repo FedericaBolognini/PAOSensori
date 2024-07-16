@@ -1,9 +1,9 @@
 #include "SensoreAcqua.h"
 
-SensoreAcqua::SensoreAcqua()
+SensoreAcqua::Sensore()
     : MinValidAlcalinità(800), MaxValidAlcalinità(1000), MinValidAcidità(210000), MaxValidAcidità(300000), Alcalinità(), Acidità() {}
 
-SensoreAcqua::SensoreAcqua(const std::string &Nome, unsigned int Precisione,
+SensoreAcqua::Sensore(const std::string &Nome, unsigned int Precisione,
                            unsigned int ID, double MinValidTemperatura,
                            double MaxValidTemperatura, int MinValidAlcalinità, int MaxValidAlcalinità, int MaxValidAcidità, int MinValidAcidità)
     : Sensore(Nome, Precisione, ID, MinValidTemperatura, MaxValidTemperatura),
@@ -253,4 +253,53 @@ void SensoreAcqua::updateAciditàRecord(unsigned int posizione, int record)
 SensoreAcqua *SensoreAcqua::clone() const
 {
     return new SensoreAcqua(*this);
+}
+
+int SensoreAcqua::Qualità() const {
+    // Inizializziamo le variabili per calcolare la percentuale di ciascun parametro
+    double percentualeTemperatura = 0.0;
+    double percentualeAlcalinità = 0.0;
+    double percentualeAcidità = 0.0;
+
+    // Controlliamo il vettore delle temperature
+    if (!Temperatura.empty()) {
+        // Calcoliamo la percentuale di temperature valide
+        int countValidTemperature = 0;
+        for (double temp : Temperatura) {
+            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+                countValidTemperature++;
+            }
+        }
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore del Alcalinità
+    if (!Alcalinità.empty()) {
+        // Calcoliamo la percentuale di Alcalinità valide
+        int countValidAlcalinità = 0;
+        for (int Alcalinità : Alcalinità) {
+            if (Alcalinità >= MinValidAlcalinità && Alcalinità <= MaxValidAlcalinità) {
+                countValidAlcalinità++;
+            }
+        }
+        percentualeAlcalinità = (static_cast<double>(countValidAlcalinità) / Alcalinità.size()) * 100.0;
+    }
+
+    // Controlliamo il vettore dell'Acidità
+    if (!Acidità.empty()) {
+        // Calcoliamo la percentuale di Acidità valido
+        int countValidAcidità = 0;
+        for (int oss : Acidità) {
+            if (oss >= MinValidAcidità && oss <= MaxValidAcidità) {
+                countValidAcidità++;
+            }
+        }
+        percentualeAcidità = (static_cast<double>(countValidAcidità) / Acidità.size()) * 100.0;
+    }
+
+    // Calcoliamo la qualità totale come media delle tre percentuali
+    double qualitàTotale = (percentualeTemperatura + percentualeAlcalinità + percentualeAcidità) / 3.0;
+
+    // Arrotondiamo il risultato e lo restituiamo come intero
+    return static_cast<int>(qualitàTotale);
 }
