@@ -58,7 +58,8 @@ void Sensore::removeTemperaturaRecord(unsigned int posizione)
 
 double Sensore::getTemperaturaRecord(unsigned int posizione)
 {
-  if (posizione > Temperatura.size() - 1)
+  double size = Temperatura.size();
+  if (Temperatura.size() == 0 || posizione > Temperatura.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }

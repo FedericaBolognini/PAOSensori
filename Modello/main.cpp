@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdexcept>
 #include "SensoreAcqua.h"
+#include "SensoreAria.h"
+#include "SensoreSuolo.h"
 
 void testSensoreAcqua() {
     try {
@@ -138,7 +140,86 @@ void testSensoreAria() {
         std::cout << "Qualità: " << customSensor.Qualità() << "%" << std::endl;
 
         // Test clone method
-        SensoreAcqua* clonedSensor = customSensor.clone();
+        SensoreAria* clonedSensor = customSensor.clone();
+        std::cout << "Cloned sensor name: " << clonedSensor->getNome() << std::endl;
+        customSensor.setNome("Nome di prova");
+        std::cout << "Custom sensor name: " << customSensor.getNome() << std::endl;
+        std::cout << "Cloned sensor name: " << clonedSensor->getNome() << std::endl;
+        delete clonedSensor;
+
+    } catch (const std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+}
+
+void testSensoreSuolo() {
+    try {
+        // Test constructors
+        SensoreSuolo defaultSensor;
+        SensoreSuolo customSensor("Sensor1", 95, 1, 15.0, 40.0, 850, 950, 220000, 290000);
+
+        // Test getters
+        std::cout << "Nome: " << customSensor.getNome() << std::endl;
+        std::cout << "Precisione: " << customSensor.getPrecisione() << std::endl;
+        std::cout << "ID: " << customSensor.getID() << std::endl;
+        std::cout << "MinValidTemperatura: " << customSensor.getMinValidTemperatura() << std::endl;
+        std::cout << "MaxValidTemperatura: " << customSensor.getMaxValidTemperatura() << std::endl;
+        std::cout << "MinValidPH: " << customSensor.getMinValidPH() << std::endl;
+        std::cout << "MaxValidPH: " << customSensor.getMaxValidPH() << std::endl;
+        std::cout << "MinValidUmidità: " << customSensor.getMinValidUmidità() << std::endl;
+        std::cout << "MaxValidUmidità: " << customSensor.getMaxValidUmidità() << std::endl;
+
+        // Test setters
+        customSensor.setNome("UpdatedSensor1");
+        customSensor.setPrecisione(90);
+        customSensor.setID(2);
+        customSensor.setMinValidTemperatura(20.0);
+        customSensor.setMaxValidTemperatura(35.0);
+        customSensor.setMinValidPH(900);
+        customSensor.setMaxValidPH(925);
+        customSensor.setMinValidUmidità(230000);
+        customSensor.setMaxValidUmidità(280000);
+
+        // Test temperature methods
+        //customSensor.addTemperaturaRecord(25.5);
+        //customSensor.addTemperaturaRecord(30.0);
+        //customSensor.insertTemperaturaRecord(1, 27.5);
+        std::cout << "Temperatura at index 1: " << customSensor.getTemperaturaRecord(1) << std::endl;
+        customSensor.updateTemperaturaRecord(1, -28.0);
+        customSensor.removeTemperaturaRecord(0);
+
+        // Test PH methods
+        customSensor.addPHRecord(910);
+        customSensor.addPHRecord(920);
+        customSensor.insertPHRecord(1, 915);
+        std::cout << "PH at index 1: " << customSensor.getPHRecord(1) << std::endl;
+        customSensor.updatePHRecord(1, 1917);
+        customSensor.removePHRecord(0);
+
+        // Test Umidità methods
+        customSensor.addUmiditàRecord(250000);
+        customSensor.addUmiditàRecord(260000);
+        customSensor.insertUmiditàRecord(1, 255000);
+        std::cout << "Umidità at index 1: " << customSensor.getUmiditàRecord(1) << std::endl;
+        customSensor.updateUmiditàRecord(1, 257000);
+        customSensor.removeUmiditàRecord(0);
+
+        // Test min/max methods
+        std::cout << "Min Temperatura: " << customSensor.MinTemperatura() << std::endl;
+        std::cout << "Max Temperatura: " << customSensor.MaxTemperatura() << std::endl;
+        std::cout << "Min PH: " << customSensor.MinPH() << std::endl;
+        std::cout << "Max PH: " << customSensor.MaxPH() << std::endl;
+        std::cout << "Min Umidità: " << customSensor.MinUmidità() << std::endl;
+        std::cout << "Max Umidità: " << customSensor.MaxUmidità() << std::endl;
+
+        // Test Qualità method
+        std::cout << "Qualità: " << customSensor.Qualità() << "%" << std::endl;
+
+        // Test clone method
+        SensoreSuolo* clonedSensor = customSensor.clone();
+        std::cout << "Cloned sensor name: " << clonedSensor->getNome() << std::endl;
+        customSensor.setNome("Nome di prova");
+        std::cout << "Custom sensor name: " << customSensor.getNome() << std::endl;
         std::cout << "Cloned sensor name: " << clonedSensor->getNome() << std::endl;
         delete clonedSensor;
 
@@ -149,7 +230,8 @@ void testSensoreAria() {
 
 
 int main() {
-    testSensoreAcqua();
+    //testSensoreAcqua();
     testSensoreAria();
+    testSensoreSuolo();
     return 0;
 }
