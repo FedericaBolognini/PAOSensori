@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include "Sensore.h"
 
-class SensoreSuolo:public Sensore
+class SensoreSuolo: public Sensore
 {
 private:
     // Valore minimo dell'intervallo valido di PH "ammissibile"
@@ -42,7 +43,7 @@ public:
    * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - 
    * se il range di valori per la temperatura non è corretto - se il range di valori per PH non è corretto - se il range di valori per l'Umidità non è corretto
    */
- SensoreSuolo(const std::string &Nome, unsigned int Precisione, int ID, double MinValidTemperatura,
+ SensoreSuolo(const std::string &Nome, unsigned int Precisione, unsigned int ID, double MinValidTemperatura,
  double MaxValidTemperatura,int MinValidPH, int MaxValidPH, int MinValidUmidità,int MaxValidUmidità);
 
  /**
@@ -165,7 +166,7 @@ int getMinValidPH() const;
    * @param record:                     valore della modifica
    * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
    */
-  void updateUmiditàRecord(unsigned int posizione, int record)
+  void updateUmiditàRecord(unsigned int posizione, int record);
   
 
  /**
@@ -210,7 +211,7 @@ int getMinValidPH() const;
   /**
    * @brief clone:                    metodo per implementare il clonable pattern per la  gerarchia
    */
-  virtual SensoreSuolo *clone() const = 0;
+  virtual SensoreSuolo *clone() const override;
 
 };
 

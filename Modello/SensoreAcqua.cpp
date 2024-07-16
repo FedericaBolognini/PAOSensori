@@ -1,9 +1,9 @@
 #include "SensoreAcqua.h"
 
-SensoreAcqua::Sensore()
+SensoreAcqua::SensoreAcqua()
     : MinValidAlcalinità(800), MaxValidAlcalinità(1000), MinValidAcidità(210000), MaxValidAcidità(300000), Alcalinità(), Acidità() {}
 
-SensoreAcqua::Sensore(const std::string &Nome, unsigned int Precisione,
+SensoreAcqua::SensoreAcqua(const std::string &Nome, unsigned int Precisione,
                            unsigned int ID, double MinValidTemperatura,
                            double MaxValidTemperatura, int MinValidAlcalinità, int MaxValidAlcalinità, int MaxValidAcidità, int MinValidAcidità)
     : Sensore(Nome, Precisione, ID, MinValidTemperatura, MaxValidTemperatura),
@@ -262,15 +262,15 @@ int SensoreAcqua::Qualità() const {
     double percentualeAcidità = 0.0;
 
     // Controlliamo il vettore delle temperature
-    if (!Temperatura.empty()) {
+    if (!(const_cast<SensoreAcqua*>(this))->getTemperaturaVector().empty()) {
         // Calcoliamo la percentuale di temperature valide
         int countValidTemperature = 0;
-        for (double temp : Temperatura) {
-            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+        for (double temp : (const_cast<SensoreAcqua*>(this))->getTemperaturaVector()) {
+            if (temp >= (const_cast<SensoreAcqua*>(this))->getMinValidTemperatura() && temp <= (const_cast<SensoreAcqua*>(this))->getMaxValidTemperatura()) {
                 countValidTemperature++;
             }
         }
-        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / (const_cast<SensoreAcqua*>(this))->getTemperaturaVector().size()) * 100.0;
     }
 
     // Controlliamo il vettore del Alcalinità

@@ -1,9 +1,9 @@
 #include "SensoreAria.h"
 
-SensoreAria::Sensore()
+SensoreAria::SensoreAria()
     :MinValidCO2(800), MaxValidCO2(1000), MinValidOssigeno(210000), MaxValidOssigeno(300000), CO2(), Ossigeno(){}
 
-SensoreAria::Sensore(const std::string &Nome, unsigned int Precisione,
+SensoreAria::SensoreAria(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
                  double MaxValidTemperatura, int MinValidCO2, int MaxValidCO2, int MaxValidOssigeno, int MinValidOssigeno)
     :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
@@ -263,15 +263,15 @@ int SensoreAria::Qualità() const {
     double percentualeOssigeno = 0.0;
 
     // Controlliamo il vettore delle temperature
-    if (!Temperatura.empty()) {
+    if(!(const_cast<SensoreAria*>(this))->getTemperaturaVector().empty()) {
         // Calcoliamo la percentuale di temperature valide
         int countValidTemperature = 0;
-        for (double temp : Temperatura) {
-            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+        for (double temp : (const_cast<SensoreAria*>(this))->getTemperaturaVector()) {
+            if (temp >= (const_cast<SensoreAria*>(this))->getMinValidTemperatura() && temp <= (const_cast<SensoreAria*>(this))->getMaxValidTemperatura()) {
                 countValidTemperature++;
             }
         }
-        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / (const_cast<SensoreAria*>(this))->getTemperaturaVector().size()) * 100.0;
     }
 
     // Controlliamo il vettore del CO2

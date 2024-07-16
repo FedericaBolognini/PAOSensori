@@ -1,11 +1,11 @@
 #include "SensoreSuolo.h"
 
-SensoreSuolo::Sensore()
+SensoreSuolo::SensoreSuolo()
     :MinValidPH(800), MaxValidPH(1000), MinValidUmidità(210000), MaxValidUmidità(300000), PH(), Umidità(){}
 
-SensoreSuolo::Sensore(const std::string &Nome, unsigned int Precisione,
+SensoreSuolo::SensoreSuolo(const std::string &Nome, unsigned int Precisione,
                  unsigned int ID, double MinValidTemperatura,
-                 double MaxValidTemperatura, int MinValidPH, int MaxValidPH, int MinValidUmidità; int MinValidUmidità)
+                 double MaxValidTemperatura, int MinValidPH, int MaxValidPH, int MinValidUmidità, int MaxValidUmidità)
     :Sensore(Nome,Precisione,ID,MinValidTemperatura,MaxValidTemperatura),
       MinValidPH(MinValidPH <= MaxValidPH ? MinValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH minimo di salubrità superiore alla massima!")),
       MaxValidPH(MinValidPH <= MaxValidPH ? MaxValidPH : throw std::invalid_argument("Tentativo di creazione di un sensore con PH massima di salubrità inferiore alla minima!")),
@@ -263,15 +263,15 @@ int SensoreSuolo::Qualità() const {
     double percentualeUmidità = 0.0;
 
     // Controlliamo il vettore delle temperature
-    if (!Temperatura.empty()) {
+    if (!(const_cast<SensoreSuolo*>(this))->getTemperaturaVector().empty()) {
         // Calcoliamo la percentuale di temperature valide
         int countValidTemperature = 0;
-        for (double temp : Temperatura) {
-            if (temp >= MinValidTemperatura && temp <= MaxValidTemperatura) {
+        for (double temp : (const_cast<SensoreSuolo*>(this))->getTemperaturaVector()) {
+            if (temp >= (const_cast<SensoreSuolo*>(this))->getMinValidTemperatura() && temp <= (const_cast<SensoreSuolo*>(this))->getMaxValidTemperatura()) {
                 countValidTemperature++;
             }
         }
-        percentualeTemperatura = (static_cast<double>(countValidTemperature) / Temperatura.size()) * 100.0;
+        percentualeTemperatura = (static_cast<double>(countValidTemperature) / (const_cast<SensoreSuolo*>(this))->getTemperaturaVector().size()) * 100.0;
     }
 
     // Controlliamo il vettore del PH

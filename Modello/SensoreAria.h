@@ -177,7 +177,7 @@ int getMinValidCO2() const;
    * @param record:                     valore della modifica
    * @throw std::invalid_argument:      se si vuole modificare un dato in una posizione non esistente!
    */
-  void updateOssigenoRecord(unsigned int posizione, int record)
+  void updateOssigenoRecord(unsigned int posizione, int record);
 
   /**
   * @brief MinCO2:                   restituisce il valore minimo del vettore del CO2 campionati
@@ -211,7 +211,7 @@ int getMinValidCO2() const;
   /**
    * @brief clone:                    metodo per implementare il clonable pattern per la  gerarchia
    */
-  virtual SensoreAria *clone() const = 0;
+  SensoreAria *clone() const override;
 };
 
 
