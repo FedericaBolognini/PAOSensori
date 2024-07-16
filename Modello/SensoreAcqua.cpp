@@ -5,7 +5,7 @@ SensoreAcqua::SensoreAcqua()
 
 SensoreAcqua::SensoreAcqua(const std::string &Nome, unsigned int Precisione,
                            unsigned int ID, double MinValidTemperatura,
-                           double MaxValidTemperatura, int MinValidAlcalinità, int MaxValidAlcalinità, int MaxValidAcidità, int MinValidAcidità)
+                           double MaxValidTemperatura, int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità)
     : Sensore(Nome, Precisione, ID, MinValidTemperatura, MaxValidTemperatura),
       MinValidAlcalinità(MinValidAlcalinità <= MaxValidAlcalinità ? MinValidAlcalinità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità minimo di salubrità superiore alla massima!")),
       MaxValidAlcalinità(MinValidAlcalinità <= MaxValidAlcalinità ? MaxValidAlcalinità : throw std::invalid_argument("Tentativo di creazione di un sensore con Alcalinità massima di salubrità inferiore alla minima!")),
