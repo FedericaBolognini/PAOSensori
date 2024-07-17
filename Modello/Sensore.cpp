@@ -46,7 +46,7 @@ void Sensore::addTemperaturaRecord(double record)
 
 void Sensore::removeTemperaturaRecord(unsigned int posizione)
 {
-  if (posizione > Temperatura.size() - 1)
+  if (Temperatura.size() == 0 || posizione > Temperatura.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -58,7 +58,6 @@ void Sensore::removeTemperaturaRecord(unsigned int posizione)
 
 double Sensore::getTemperaturaRecord(unsigned int posizione)
 {
-  double size = Temperatura.size();
   if (Temperatura.size() == 0 || posizione > Temperatura.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
@@ -69,7 +68,7 @@ double Sensore::getTemperaturaRecord(unsigned int posizione)
 
 void Sensore::insertTemperaturaRecord(unsigned int posizione, double record)
 {
-  if (posizione > Temperatura.size() - 1)
+  if (Temperatura.size() == 0 || posizione > Temperatura.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -79,7 +78,7 @@ void Sensore::insertTemperaturaRecord(unsigned int posizione, double record)
 
 void Sensore::updateTemperaturaRecord(unsigned int posizione, double record)
 {
-  if (posizione > Temperatura.size() - 1)
+  if (Temperatura.size() == 0 || posizione > Temperatura.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
 

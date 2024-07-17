@@ -166,7 +166,7 @@ void SensoreAria::addCO2Record(int record)
 
 void SensoreAria::removeCO2Record(unsigned int posizione)
 {
-  if (posizione > CO2.size() - 1)
+  if (CO2.size() == 0 || posizione > CO2.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -178,7 +178,7 @@ void SensoreAria::removeCO2Record(unsigned int posizione)
 
 int SensoreAria::getCO2Record(unsigned int posizione)
 {
-  if (posizione > CO2.size() - 1)
+  if (CO2.size() == 0 || posizione > CO2.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -188,7 +188,7 @@ int SensoreAria::getCO2Record(unsigned int posizione)
 
 void SensoreAria::insertCO2Record(unsigned int posizione, int record)
 {
-  if (posizione > CO2.size() - 1)
+  if (CO2.size() == 0 || posizione > CO2.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -198,7 +198,7 @@ void SensoreAria::insertCO2Record(unsigned int posizione, int record)
 
 void SensoreAria::updateCO2Record(unsigned int posizione, int record)
 {
-  if (posizione > CO2.size() - 1)
+  if (CO2.size() == 0 || posizione > CO2.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }
@@ -212,7 +212,7 @@ void SensoreAria::addOssigenoRecord(int record)
 
 void SensoreAria::removeOssigenoRecord(unsigned int posizione)
 {
-  if (posizione > Ossigeno.size() - 1)
+  if (Ossigeno.size() == 0 || posizione > Ossigeno.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -224,7 +224,7 @@ void SensoreAria::removeOssigenoRecord(unsigned int posizione)
 
 int SensoreAria::getOssigenoRecord(unsigned int posizione)
 {
-  if (posizione > Ossigeno.size() - 1)
+  if (Ossigeno.size() == 0 || posizione > Ossigeno.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -234,7 +234,7 @@ int SensoreAria::getOssigenoRecord(unsigned int posizione)
 
 void SensoreAria::insertOssigenoRecord(unsigned int posizione, int record)
 {
-  if (posizione > Ossigeno.size() - 1)
+  if (Ossigeno.size() == 0 || posizione > Ossigeno.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -244,7 +244,7 @@ void SensoreAria::insertOssigenoRecord(unsigned int posizione, int record)
 
 void SensoreAria::updateOssigenoRecord(unsigned int posizione, int record)
 {
-  if (posizione > Ossigeno.size() - 1)
+  if (Ossigeno.size() == 0 || posizione > Ossigeno.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }
