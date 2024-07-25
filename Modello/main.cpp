@@ -181,9 +181,9 @@ void testSensoreSuolo() {
         customSensor.setMaxValidUmidità(280000);
 
         // Test temperature methods
-        //customSensor.addTemperaturaRecord(25.5);
-        //customSensor.addTemperaturaRecord(30.0);
-        //customSensor.insertTemperaturaRecord(1, 27.5);
+        customSensor.addTemperaturaRecord(25.5);
+        customSensor.addTemperaturaRecord(30.0);
+        customSensor.insertTemperaturaRecord(1, 27.5);
         std::cout << "Temperatura at index 1: " << customSensor.getTemperaturaRecord(1) << std::endl;
         customSensor.updateTemperaturaRecord(1, -28.0);
         customSensor.removeTemperaturaRecord(0);
@@ -221,6 +221,20 @@ void testSensoreSuolo() {
         customSensor.setNome("Nome di prova");
         std::cout << "Custom sensor name: " << customSensor.getNome() << std::endl;
         std::cout << "Cloned sensor name: " << clonedSensor->getNome() << std::endl;
+        customSensor.addTemperaturaRecord(50.2);
+
+        std::cout<<"CustomSensor: "<<std::endl;
+        for(int i= 0; i < customSensor.getTemperaturaVector().size(); i++){
+            std::cout<<customSensor.getTemperaturaVector().at(i)<<", ";
+        }
+        std::cout<<"-----------"<<std::endl;
+
+        std::cout<<"ClonedSensor: "<<std::endl;
+        for(int i= 0; i < clonedSensor->getTemperaturaVector().size(); i++){
+            std::cout<<clonedSensor->getTemperaturaVector().at(i)<<", ";
+        }
+        std::cout<<"-----------"<<std::endl;
+
         delete clonedSensor;
 
     } catch (const std::exception& e) {
