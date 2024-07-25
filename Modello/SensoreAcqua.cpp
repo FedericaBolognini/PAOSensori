@@ -165,7 +165,7 @@ void SensoreAcqua::addAlcalinitàRecord(int record)
 
 void SensoreAcqua::removeAlcalinitàRecord(unsigned int posizione)
 {
-  if (posizione > Alcalinità.size() - 1)
+  if (Alcalinità.size() == 0 || posizione > Alcalinità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -177,7 +177,7 @@ void SensoreAcqua::removeAlcalinitàRecord(unsigned int posizione)
 
 int SensoreAcqua::getAlcalinitàRecord(unsigned int posizione)
 {
-  if (posizione > Alcalinità.size() - 1)
+  if (Alcalinità.size() == 0 || posizione > Alcalinità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -187,7 +187,7 @@ int SensoreAcqua::getAlcalinitàRecord(unsigned int posizione)
 
 void SensoreAcqua::insertAlcalinitàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Alcalinità.size() - 1)
+  if (Alcalinità.size() == 0 || posizione > Alcalinità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -197,7 +197,7 @@ void SensoreAcqua::insertAlcalinitàRecord(unsigned int posizione, int record)
 
 void SensoreAcqua::updateAlcalinitàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Alcalinità.size() - 1)
+  if (Alcalinità.size() == 0 || posizione > Alcalinità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }
@@ -211,7 +211,7 @@ void SensoreAcqua::addAciditàRecord(int record)
 
 void SensoreAcqua::removeAciditàRecord(unsigned int posizione)
 {
-  if (posizione > Acidità.size() - 1)
+  if (Acidità.size() == 0 || posizione > Acidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -223,7 +223,7 @@ void SensoreAcqua::removeAciditàRecord(unsigned int posizione)
 
 int SensoreAcqua::getAciditàRecord(unsigned int posizione)
 {
-  if (posizione > Acidità.size() - 1)
+  if (Acidità.size() == 0 || posizione > Acidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -233,7 +233,7 @@ int SensoreAcqua::getAciditàRecord(unsigned int posizione)
 
 void SensoreAcqua::insertAciditàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Acidità.size() - 1)
+  if (Acidità.size() == 0 || posizione > Acidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -243,7 +243,7 @@ void SensoreAcqua::insertAciditàRecord(unsigned int posizione, int record)
 
 void SensoreAcqua::updateAciditàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Acidità.size() - 1)
+  if (Acidità.size() == 0 || posizione > Acidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }

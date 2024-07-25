@@ -166,7 +166,7 @@ void SensoreSuolo::addPHRecord(int record)
 
 void SensoreSuolo::removePHRecord(unsigned int posizione)
 {
-  if (posizione > PH.size() - 1)
+  if (PH.size() == 0 || posizione > PH.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -178,7 +178,7 @@ void SensoreSuolo::removePHRecord(unsigned int posizione)
 
 int SensoreSuolo::getPHRecord(unsigned int posizione)
 {
-  if (posizione > PH.size() - 1)
+  if (PH.size() == 0 || posizione > PH.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -188,7 +188,7 @@ int SensoreSuolo::getPHRecord(unsigned int posizione)
 
 void SensoreSuolo::insertPHRecord(unsigned int posizione, int record)
 {
-  if (posizione > PH.size() - 1)
+  if (PH.size() == 0 || posizione > PH.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -198,7 +198,7 @@ void SensoreSuolo::insertPHRecord(unsigned int posizione, int record)
 
 void SensoreSuolo::updatePHRecord(unsigned int posizione, int record)
 {
-  if (posizione > PH.size() - 1)
+  if (PH.size() == 0 || posizione > PH.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }
@@ -212,7 +212,7 @@ void SensoreSuolo::addUmiditàRecord(int record)
 
 void SensoreSuolo::removeUmiditàRecord(unsigned int posizione)
 {
-  if (posizione > Umidità.size() - 1)
+  if (Umidità.size() == 0 || posizione > Umidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di rimozione di un dato in posizione non esistente!");
   }
@@ -224,7 +224,7 @@ void SensoreSuolo::removeUmiditàRecord(unsigned int posizione)
 
 int SensoreSuolo::getUmiditàRecord(unsigned int posizione)
 {
-  if (posizione > Umidità.size() - 1)
+  if (Umidità.size() == 0 || posizione > Umidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di ottenimento di un dato in posizione non esistente!");
   }
@@ -234,7 +234,7 @@ int SensoreSuolo::getUmiditàRecord(unsigned int posizione)
 
 void SensoreSuolo::insertUmiditàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Umidità.size() - 1)
+  if (Umidità.size() == 0 || posizione > Umidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di inserimento di un dato in posizione non esistente!");
   }
@@ -244,7 +244,7 @@ void SensoreSuolo::insertUmiditàRecord(unsigned int posizione, int record)
 
 void SensoreSuolo::updateUmiditàRecord(unsigned int posizione, int record)
 {
-  if (posizione > Umidità.size() - 1)
+  if (Umidità.size() == 0 || posizione > Umidità.size() - 1)
   {
     throw std::invalid_argument("Tentativo di modifica di un dato in posizione non esistente!");
   }
