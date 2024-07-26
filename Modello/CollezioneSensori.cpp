@@ -76,7 +76,49 @@ void CollezioneSensori::setSensore(unsigned int Posizione, const std::string &No
         throw std::out_of_range("Posizione non valida");
     }
 
-   //!
+    if(Nome == "" || Precisione > 100 || MinValidTemperatura > MaxValidTemperatura || MinValidAcidità > MaxValidAcidità
+    || MinValidAlcalinità > MaxValidAlcalinità || MinValidOssigeno > MaxValidOssigeno || MinValidCO2 > MaxValidCO2
+    || MinValidUmidità > MaxValidUmidità || MinValidPH > MaxValidPH) {
+        throw std::invalid_argument("Parametri di modifica non validi");
+    }
+
+    Sensore* sensore = sensori[Posizione];
+
+    sensore->setNome(Nome);
+    sensore->setPrecisione(Precisione);
+    sensore->setMinValidTemperatura(MinValidTemperatura);
+    sensore->setMaxValidTemperatura(MaxValidTemperatura);
+
+    if(MinValidAcidità != INT_MIN && MaxValidAcidità != INT_MAX
+    && MinValidAlcalinità != INT_MIN && MaxValidAlcalinità != INT_MAX){
+
+        SensoreAcqua* sensoreAcqua = dynamic_cast<SensoreAcqua*>(sensore);
+        sensoreAcqua->setMinValidAlcalinità(MinValidAlcalinità);
+        sensoreAcqua->setMaxValidAlcalinità(MaxValidAlcalinità);
+        sensoreAcqua->setMinValidAcidità(MinValidAcidità);
+        sensoreAcqua->setMaxValidAcidità(MaxValidAcidità);
+
+    } else if(MinValidCO2 != INT_MIN && MaxValidCO2 != INT_MAX
+    && MinValidOssigeno != INT_MIN && MaxValidOssigeno != INT_MAX){
+
+        SensoreAria* sensoreAria = dynamic_cast<SensoreAria*>(sensore);
+        sensoreAria->setMinValidCO2(MinValidCO2);
+        sensoreAria->setMaxValidCO2(MaxValidCO2);
+        sensoreAria->setMinValidOssigeno(MinValidOssigeno);
+        sensoreAria->setMaxValidOssigeno(MaxValidOssigeno);
+
+    } else if(MinValidPH != INT_MIN && MaxValidPH != INT_MAX
+    && MinValidUmidità != INT_MIN && MaxValidUmidità != INT_MAX){
+
+        SensoreSuolo* sensoreSuolo = dynamic_cast<SensoreSuolo*>(sensore);
+        sensoreSuolo->setMinValidPH(MinValidPH);
+        sensoreSuolo->setMaxValidPH(MaxValidPH);
+        sensoreSuolo->setMinValidUmidità(MinValidUmidità);
+        sensoreSuolo->setMaxValidUmidità(MaxValidUmidità);
+
+    } else {
+        throw std::invalid_argument("Parametri di modifica non validi");
+    }
 }
 
 CollezioneSensori::CollezioneSensori(const CollezioneSensori &collezione) : sensori(copy(collezione)) {}

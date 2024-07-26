@@ -2,7 +2,9 @@
 #define COLLEZIONESENSORI_H
 
 #include "Sensore.h"
-#include <list>
+#include "SensoreAcqua.h"
+#include "SensoreAria.h"
+#include "SensoreSuolo.h"
 #include <vector>
 #include <string>
 
@@ -105,12 +107,13 @@ public:
      * @param MaxValidUmidità:         valore massimo dell'intervallo valido di Umidità "ammissibile"
      * @param MinValidPH:              valore minimo dell'intervallo valido di PH "ammissibile"
      * @param MaxValidPH:              valore massimo dell'intervallo valido di PH "ammissibile"
-     * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)ì-
+     * @throw std::invalid_argument    se il nome è vuoto - se la precisione supera il 100% - se il range di valori per temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)- e se non è possibile risalire al tipo di vettore dai parametri
+     * @throw std::out_of_range        se la posizione eccede la lunghezza del vettore 
      */
     void setSensore(unsigned int Posizione, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
-        int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
-        int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
-        int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH);
+        int MinValidAlcalinità = INT_MIN, int MaxValidAlcalinità = INT_MAX, int MinValidAcidità = INT_MIN, int MaxValidAcidità = INT_MAX, 
+        int MinValidOssigeno = INT_MIN, int MaxValidOssigeno = INT_MAX, int MinValidCO2 = INT_MIN, int MaxValidCO2 = INT_MAX,
+        int MinValidUmidità = INT_MIN, int MaxValidUmidità = INT_MAX, int MinValidPH = INT_MIN, int MaxValidPH = INT_MAX);
 
     /**
      * @brief CollezioneSensori:           costruttore di copia profonda
