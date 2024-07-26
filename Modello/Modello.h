@@ -2,9 +2,16 @@
 #define MODELLO_H
 
 #include "CollezioneSensori.h"
+#include "SensoreCreator.h"
 #include "Sensore.h"
 #include <string>
 #include <vector>
+
+// Modello:
+// --> CollezioneSensori
+// ID: [0 1 2 3 4 5 6 7 8 9 10] --> rimuovo ID 4 -->  [0 1 2 3 5 6 7 8 9 10]
+
+// Modello: [0 1 2 3 5 6 7 8 9 10]: massimo degli ID = 10 --> inserisco un nuovo sensore: [0 1 2 3 5 6 7 8 9 10 11] 
 
 class Model {
 private:
@@ -44,7 +51,7 @@ public:
 
     void addNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
         int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
-        int MinValidOssigeno, int MinValidOssigeno, int MinValidCO2, int MaxValidCO2,
+        int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
         int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH) const;
 
      /**
