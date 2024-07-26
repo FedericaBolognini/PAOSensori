@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef MODELLO_H
+#define MODELLO_H
 
 #include "CollezioneSensori.h"
 #include "Sensore.h"
@@ -9,97 +9,156 @@
 class Model {
 private:
 
-    //puntatore al piano di allenamenti, che contiene una collezione di allenamenti
+    //puntatore alla collezione di sensori, che contiene una collezione sensori
     CollezioneSensori *collezioneSensori;
 
 public:
 
     /**
-     * @brief Model:                 costruisce il piano di allenamenti
+     * @brief Model:                 costruisce la collezione di sensori
      */
     Model();
 
-    void addNewSensore(const std::string &type, unsigned int ID, const std::string &nome, unsigned int precisione, double minValidTemperatura, double maxValidTemperatura, 
+     /**
+     * @brief addNewSensore:            aggiunge alla collezione e fa creare ad una classe apposita un sensore sulla base dei parametri in ingresso
+     * @param Type:                     tipo del sensore da creare
+     * @param Name:                     nome del sensore da creare
+     * @param ID:                       ID del sensore da creare
+     * @param Precisione:               precisione del sensore, utilizzato nelle simulazioni
+     * @param MinValidTemperatura:      valore minimo dell'intervallo valido di temperatura "salubre"
+     * @param MaxValidTemperatura:      valore massimo dell'intervallo valido di temperatura "salubre"
+     * @param MinValidAlcalinità:       valore minimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MaxValidAlcalinità:       valore massimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MinValidAcidità:          valore minimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MaxValidAcidità:          valore massimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MinValidOssigeno:         valore minimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MaxValidOssigeno:         valore massimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MinValidCO2:              valore minimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MaxValidCO2:              valore massimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MinValidUmidità:          valore minimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MaxValidUmidità:          valore massimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MinValidPH:               valore minimo dell'intervallo valido di PH "ammissibile"
+     * @param MaxValidPH:               valore massimo dell'intervallo valido di PH "ammissibile"
+     * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per la temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)-
+     */
+
+    void addNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
+        int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
+        int MinValidOssigeno, int MinValidOssigeno, int MinValidCO2, int MaxValidCO2,
+        int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH) const;
+
+     /**
+     * @brief insertNewSensore:         inserisce alla collezione e fa creare ad una classe apposita un sensore sulla base dei parametri in ingresso
+     * @param Type:                     tipo del sensore da inserire
+     * @param Name:                     nome del sensore da inserire
+     * @param ID:                       ID del sensore da inserire
+     * @param Precisione:               precisione del sensore, utilizzato nelle simulazioni
+     * @param MinValidTemperatura:      valore minimo dell'intervallo valido di temperatura "salubre"
+     * @param MaxValidTemperatura:      valore massimo dell'intervallo valido di temperatura "salubre"
+     * @param MinValidAlcalinità:       valore minimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MaxValidAlcalinità:       valore massimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MinValidAcidità:          valore minimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MaxValidAcidità:          valore massimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MinValidOssigeno:         valore minimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MaxValidOssigeno:         valore massimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MinValidCO2:              valore minimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MaxValidCO2:              valore massimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MinValidUmidità:          valore minimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MaxValidUmidità:          valore massimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MinValidPH:               valore minimo dell'intervallo valido di PH "ammissibile"
+     * @param MaxValidPH:               valore massimo dell'intervallo valido di PH "ammissibile"
+     * @param posizione                 posizione dalla quale inserire il sensore
+     * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per la temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto-
+     */
+
+    void insertNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTeMperatura, double MaxValidTeMperatura, 
+        int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
+        int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
+        int MinValidUMidità, int MaxValidUMidità, int MinValidPH, int MaxValidPH, unsigned int posizione);
+    
+    /**
+     * @brief setSensore:               setter per un sensore
+     * @param Posizione                 posizione del sensore da settare
+     * @param Name:                     nome del sensore da settare
+     * @param ID:                       ID del sensore da settare
+     * @param Precisione:               precisione del sensore, utilizzato nelle simulazioni
+     * @param MinValidTemperatura:      valore minimo dell'intervallo valido di temperatura "salubre"
+     * @param MaxValidTemperatura:      valore massimo dell'intervallo valido di temperatura "salubre"
+     * @param MinValidAlcalinità:       valore minimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MaxValidAlcalinità:       valore massimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MinValidAcidità:          valore minimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MaxValidAcidità:          valore massimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MinValidOssigeno:         valore minimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MaxValidOssigeno:         valore massimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MinValidCO2:              valore minimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MaxValidCO2:              valore massimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MinValidUmidità:          valore minimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MaxValidUmidità:          valore massimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MinValidPH:               valore minimo dell'intervallo valido di PH "ammissibile"
+     * @param MaxValidPH:               valore massimo dell'intervallo valido di PH "ammissibile"
+     * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per la temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)-
+     */
+
+    void setSensore(unsigned int Posizione, const std::string &Nome, unsigned int Precisione, double minValidTemperatura, double maxValidTemperatura, 
         int minValidAlcalinità, int maxValidAlcalinità, int minValidAcidità, int maxValidAcidità, 
         int minValidOssigeno, int maxValidOssigeno, int minValidCO2, int maxValidCO2,
         int minValidUmidità, int maxValidUmidità, int minValidPH, int maxValidPH) const;
 
-    void insertNewSensore(const std::string &type, unsigned int ID, const std::string &nome, unsigned int precisione, double minValidTemperatura, double maxValidTemperatura, 
-        int minValidAlcalinità, int maxValidAlcalinità, int minValidAcidità, int maxValidAcidità, 
-        int minValidOssigeno, int maxValidOssigeno, int minValidCO2, int maxValidCO2,
-        int minValidUmidità, int maxValidUmidità, int minValidPH, int maxValidPH, unsigned int posizione);
-
-    /**
-     * @brief addNewTraining:           aggiunge al piano e fa creare ad una classe apposita un allenamento sulla base dei parametri in ingresso
-     * @param type:                     tipo dell'allenamento da creare
-     * @param name:                     nome dell'allenamento da creare
-     * @param start:                    data di inizio dell'allenamento da creare
-     * @param distance:                 distanza percorsa durante l'allenamento da creare
-     * @param duration:                 durata dell'allenamento da creare
-     * @param exName:                   puntatore ad una collezione di nomi per nuovi esercizi da creare
-     * @param exDuration:               puntatore ad una collezione di durate per nuovi esercizi da creare
-     * @param exRecovery:               puntatore ad una collezione di durate di recupero per nuovi esercizi da creare
-     * @throw std::invalid_argument:    se i parametri passati contengono degli errori a livello logico
+     /**
+     * @brief removeSensore:           rimuove il sensore richiesto dalla collezione di sensori
+     * @param posizione:               posizione del sensore da rimuovere
+     * @throw std::out_of_range:       se la posizione passata non è valida ossia maggiore della dimensione della collezione di sensori
      */
-    void setSensore(unsigned int posizione, const std::string &nome, unsigned int precisione, double minValidTemperatura, double maxValidTemperatura, 
-        int minValidAlcalinità, int maxValidAlcalinità, int minValidAcidità, int maxValidAcidità, 
-        int minValidOssigeno, int maxValidOssigeno, int minValidCO2, int maxValidCO2,
-        int minValidUmidità, int maxValidUmidità, int minValidPH, int maxValidPH) const;
+    void removeSensore(unsigned int posizione) const;
 
-    /**
-     * @brief removeTraining:           rimuove l'allenamento richiesto dal piano di allenamenti
-     * @param pos:                      posizione dell'allenamento da rimuovere
-     * @throw std::out_of_range:        se la posizione passata non è valida (minore di 0 o maggiore della dimensione del piano di allenamenti)
+     /**
+     * @brief getSensore:           ritorna il puntatore ad un sensore della collezione di sensori
+     * @param posizione:            posizione da cui ottenere il puntatore ad un sensore della collezione di sensori
+     * @throw std::out_of_range:    se la posizione passata non è valida ossia maggiore della dimensione della collezione di sensori
+     * @return Sensore *:           puntatore ad un sensore dalla collezione di sensori
      */
-    void removeSensore(unsigned int pos) const;
+    Sensore *getSensore(unsigned int posizione) const;
 
-    /**
-     * @brief getTraining:          ritorna il puntatore ad un allenamento del piano di allenamenti
-     * @param position:             posizione da cui ottenere il puntatore ad un allenamento del piano di allenamenti
-     * @throw std::out_of_range:    se la posizione passata non è valida (minore di 0 o maggiore della dimensione del piano di allenamenti)
-     * @return Training*:           puntatore ad un allenamneto dal piano di allenamenti
-     */
-    Sensore *getSensore(unsigned int pos) const;
-
-    /**
-     * @brief getTrainings:                 restituisce il puntatore alla collezione di puntatori agli allenamenti
-     * @return std::list<Training *>*:      puntatore alla collezione di puntatori agli allenamenti
+     /**
+     * @brief getSensori:                   restituisce il puntatore alla collezione di puntatori ai sensori
+     * @return std::vector<Sensore *>*:      puntatore alla collezione di puntatori ai sensori 
      */
     const std::vector<Sensore *>* getSensori() const;
-    /**
-     * @brief getPlanSize:       restituisce il numero di allenamenti presenti nella collezione di allenamenti
-     * @return unsigned int:     numero di allenamenti presenti nella collezione di allenamenti
+
+     /**
+     * @brief ggetSize:          restituisce il numero di sensori presenti nella collezione di sensori
+     * @return unsigned int:     numero di sensori presenti nella collezione di sensori 
      */
     unsigned int getSize() const;
 
-    /**
-     * @brief isEmpty:                  ritorna un booleano che indica se il piano di allenamenti ha almeno un allenamento
-     * @return bool:                    indica se il piano di allenamenti ha almeno un allenamento
+     /**
+     * @brief isEmpty:                  ritorna un booleano che indica se la collezione di sensori ha almeno un sensore
+     * @return bool:                    indica se la collezione di sensori ha almeno un sensore
      */
     bool isEmpty() const;
 
-    /**
-     * @brief removeTrainings:                 svuota il piano di allenamenti
+     /**
+     * @brief removeSensori:                 svuota la collezione di sensori
      */
     void removeSensori() const;
 
-    /**
+     /**
      * @brief Model:           costruttore di copia profonda
-     * @param model:           modello da cui copiare il piano di allenamenti
+     * @param model:           modello da cui copiare la collezione di sensori 
      */
     Model(const Model &model);
 
-    /**
+     /**
      * @brief operator=:              operatore di assegnazione ridefinito
-     * @param model:                  modello da cui copiare il piano di allenamenti
+     * @param model:                  modello da cui copiare la collezione di sensori
      * @return Model&:                riferimento al modello appena modificato
      */
     Model &operator=(const Model &model);
 
-    /**
+     /**
      * @brief ~Model:                 distruttore profondo
      */
     ~Model();
 };
 
-#endif // MODEL_H
+#endif // MODELLO_H

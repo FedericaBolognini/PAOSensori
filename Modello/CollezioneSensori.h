@@ -1,5 +1,5 @@
-#ifndef PLAN_H
-#define PLAN_H
+#ifndef COLLEZIONESENSORI_H
+#define COLLEZIONESENSORI_H
 
 #include "Sensore.h"
 #include <list>
@@ -9,121 +9,126 @@
 class CollezioneSensori {
 private:
 
-    //collezione di puntatori ad allenamenti: gli allenamenti sono memorizzati in ordine temporale (invariante per ogni operazione
-    //  su questa collezione) e tra di essi non ci possono essere sovrapposizioni; la loro durata deve essere <= 20 ore, il numero
-    //  di esercizi compreso tra 1 e 15 e le durate ed i nomi devono essere non nulli.
+    //collezione di puntatori a sensori
     std::vector<Sensore *> sensori;
 
     /**
-     * @brief copy:                     costruisce una lista di puntatori ad allenamenti equivalenti a quelli del piano passato in ingresso
-     * @param plan:                     piano di allenamenti da cui copiare la collezione di allenamenti
-     * @return std::list<Sensore *>:   collezione di puntatori ad allenamenti equivalenti a quelli del piano passato in ingresso
+     * @brief copy:                           costruisce una lista di puntatori a sensori equivalenti a quelli della collezione passata in ingresso
+     * @param collezione:                     collezione di sensori da copiare
+     * @return std::list<Sensore *>:          collezione di puntatori a sensori equivalenti a quelli della collezione passata in ingresso
      */
     static std::vector<Sensore *> copy(const CollezioneSensori &collezione);
 
     /**
-     * @brief destroy:                  dealloca gli allenamenti del piano passato in ingresso
-     * @param plan:                     piano di allenamenti a cui deallocare la collezione di allenamenti
+     * @brief destroy:                        dealloca i sensori della collezione passata in ingresso
+     * @param collezione:                     collezione di sensori da deallocare 
      */
     static void destroy(const CollezioneSensori &collezione);
 
 public:
 
     /**
-     * @brief Plan:                 costruisce il piano di allenamenti vuoto (senza alcun allenamento nella collezione)
+     * @brief CollezioneSensori         costruisce una collezione di sensori vuoto (senza alcun sensore nella collezione)
      */
     CollezioneSensori() = default;
 
     /**
-     * @brief insertTraining:           inserisce il puntatore ad un nuovo allenamento nella collezione di allenamenti
-     * @param training:                 allenamento da inserire
-     * @throw std::invalid_argument:    se l'allenamento non rispetta i vincoli di programma
+     * @brief addSensore:               inserisce il puntatore ad un nuovo sensore nella collezione di sensori
+     * @param sensore:                  sensore da aggiungere
+     * @throw std::invalid_argument:    se il sensore è nullo
      */
     void addSensore(Sensore *sensore);
 
         /**
-     * @brief insertTraining:           inserisce il puntatore ad un nuovo allenamento nella collezione di allenamenti
-     * @param training:                 allenamento da inserire
-     * @param posizione
-     * @throw std::invalid_argument:    se l'allenamento non rispetta i vincoli di programma
+     * @brief insertSensore:            inserisce il puntatore ad un nuovo sensore nella collezione di sensori
+     * @param sensore:                  sensore da inserire
+     * @param posizione                 posizione del sensore da inserire
+     * @throw std::invalid_argument:    se il sensore è nullo 
+     * @throw std::out_of_range         la posizione non è valida 
      */
     void insertSensore(Sensore *sensore, unsigned int posizione);
 
     /**
-     * @brief removeTraining:           rimuove il puntatore (e dealloca) l'allenamento richiesto dalla collezione di allenamenti rispettando i vincoli (sopra)
-     * @param pos:                      posizione dell'allenamento da rimuovere
-     * @throw std::out_of_range:        se la posizione passata non è valida (minore di 0 o maggiore della dimensione della collezione)
+     * @brief removeSensore:               rimuove il puntatore (e dealloca) il sensore richiesto dalla collezione di sensori
+     * @param posizione:                   posizione del sensore da rimuovere
+     * @throw std::out_of_range:           se la posizione passata non è valida ossia maggiore della dimensione della collezione
      */
-    void removeSensore(unsigned int pos);
+    void removeSensore(unsigned int posizione);
 
     /**
-     * @brief getTraining:          ritorna il puntatore ad un allenamento dalla collezione di allenamenti
-     * @param position:             posizione da cui ottenere il puntatore ad un allenamento dalla collezione di allenamenti
-     * @throw std::out_of_range:    se la posizione passata non è valida (minore di 0 o maggiore della dimensione della collezione)
-     * @return Training*:           puntatore ad un allenamneto dalla collezione di allenamenti
+     * @brief getSensore:            ritorna il puntatore ad un sensore dalla collezione di sensori
+     * @param posizione:             posizione da cui ottenere il puntatore ad un sensore dalla collezione di sensori
+     * @throw std::out_of_range:     se la posizione passata non è valida ossia maggiore della dimensione della collezione
+     * @return Sensore*:             puntatore ad un sensore dalla collezione di sensori
      */
-    Sensore *getSensore(unsigned int position) const;
+    Sensore *getSensore(unsigned int posizione) const;
 
     /**
-     * @brief getTrainings:                 restituisce il puntatore alla collezione di puntatori agli allenamenti
-     * @return std::list<Training *>*:      puntatore alla collezione di puntatori agli allenamenti
+     * @brief getSensori:                 restituisce il puntatore alla collezione di puntatori ai sensori
+     * @return std::vector<Sensore *>*:   puntatore alla collezione di puntatori ai sensori
      */
     const std::vector<Sensore *>* getSensori() const;
 
     /**
-     * @brief getSize:           restituisce il numero di allenamenti presenti nella collezione di allenamenti
-     * @return unsigned int:     numero di allenamenti presenti nella collezione di allenamenti
+     * @brief getSize:           restituisce il numero di sensori presenti nella collezione di sensori 
+     * @return unsigned int:     numero di sensori presenti nella collezione di sensori
      */
     unsigned int getSize() const;
 
     /**
-     * @brief isEmpty:                  ritorna un booleano che indica se il piano di allenamenti ha almeno un allenamento
-     * @return bool:                    indica se il piano di allenamenti ha almeno un allenamento
+     * @brief isEmpty:                  ritorna un booleano che indica se la collezione di sensori ha almeno un sensore 
+     * @return bool:                    indica se la collezione di sensori ha almeno un sensore 
      */
     bool isEmpty() const;
 
     /**
-     * @brief clear:                 svuota la collezione di puntatori agli allenamenti, deallocandoli
+     * @brief clear:                 svuota la collezione di sensori, deallocandoli
      */
     void clear();
 
     /**
-     * @brief setTraining:              modifica un allenamento sulla base dei parametri in ingresso
-     * @param position:                 posizione dell'allenamento da modificare
-     * @param name:                     nome per l'allenamento da modificare
-     * @param start:                    data di inizio per l'allenamento da modificare
-     * @param distance:                 distanza percorsa per l'allenamento da modificare
-     * @param duration:                 durata per l'allenamento da modificare
-     * @param exPos:                    eventuale posizione dove modificare la collezione di esercizi di un allenamento di ripetizione
-     * @param action:                   eventuale azione da effettuare sulla collezione di esercizi di un allenamento di ripetizione (all'esercizio indicato da exPos)
-     * @param exName:                   puntatore ad una collezione di nomi per nuovi esercizi da modificare
-     * @param exDuration:               puntatore ad una collezione di durate per nuovi esercizi da modificare
-     * @param exRecovery:               puntatore ad una collezione di durate di recupero per nuovi esercizi da modificare
-     * @throw std::out_of_range:        se la posizione passata non è valida (minore di 0 o maggiore della dimensione della collezione)
-     * @throw std::invalid_argument:    se i dati in ingresso non sono corretti
+     * @brief setSensore:              modifica un sensore sulla base dei parametri in ingresso
+     * @param Posizione:               posizione del sensore da modificare
+     * @param Nome:                    nome del sensore
+     * @param Precisione:              precisione del sensore, utilizzato nelle simulazioni
+     * @param MinValidTemperatura:     valore minimo dell'intervallo valido di temperatura "salubre"
+     * @param MaxValidTemperatura:     valore massimo dell'intervallo valido di temperatura "salubre"
+     * @param MinValidAlcalinità:      valore minimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MaxValidAlcalinità:      valore massimo dell'intervallo valido di Alcalinità "ammissibile"
+     * @param MinValidAcidità:         valore minimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MaxValidAcidità:         valore massimo dell'intervallo valido di Acidità "ammissibile"
+     * @param MinValidOssigeno:        valore minimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MaxValidOssigeno:        valore massimo dell'intervallo valido di Ossigeno "ammissibile"
+     * @param MinValidCO2:             valore minimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MaxValidCO2:             valore massimo dell'intervallo valido di CO2 "ammissibile"
+     * @param MinValidUmidità:         valore minimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MaxValidUmidità:         valore massimo dell'intervallo valido di Umidità "ammissibile"
+     * @param MinValidPH:              valore minimo dell'intervallo valido di PH "ammissibile"
+     * @param MaxValidPH:              valore massimo dell'intervallo valido di PH "ammissibile"
+     * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)ì-
      */
-    void setSensore(unsigned int posizione, const std::string &nome, unsigned int precisione, double minValidTemperatura, double maxValidTemperatura, 
-        int minValidAlcalinità, int maxValidAlcalinità, int minValidAcidità, int maxValidAcidità, 
-        int minValidOssigeno, int maxValidOssigeno, int minValidCO2, int maxValidCO2,
-        int minValidUmidità, int maxValidUmidità, int minValidPH, int maxValidPH);
+    void setSensore(unsigned int Posizione, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
+        int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
+        int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
+        int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH);
 
     /**
-     * @brief Plan:           costruttore di copia profonda
-     * @param plan:           piano di allenamenti da cui copiare la collezione di allenamenti
+     * @brief CollezioneSensori:           costruttore di copia profonda
+     * @param collezione:                  collezione di sensori da cui copiare la collezione di sensori
      */
-    CollezioneSensori(const CollezioneSensori &plan);
+    CollezioneSensori(const CollezioneSensori &collezione);
 
     /**
-     * @brief operator=:             operatore di assegnazione ridefinito
-     * @param plan:                  piano di allenamenti da cui copiare la collezione di allenamenti
-     * @return Plan&:                riferimento al piano di allenamenti appena modificato
+     * @brief operator=:                    operatore di assegnazione ridefinito
+     * @param collezoione:                  collezione di sensori da cui copiare la collezione di sensori
+     * @return CollezioneSensori&:          riferimento alla collezione di sensori appena modificata
      */
-    CollezioneSensori &operator=(const CollezioneSensori &plan);
+    CollezioneSensori &operator=(const CollezioneSensori &collezione);
 
     /**
-     * @brief ~Plan:                 distruttore profondo
+     * @brief ~CollezioneSensori:                 distruttore profondo
      */
     ~CollezioneSensori();
 };
 
-#endif // PLAN_H
+#endif //COLLEZIONESENSORI_H
