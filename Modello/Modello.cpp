@@ -3,18 +3,24 @@
 
 Model::Model() : collezioneSensori(new CollezioneSensori()) {}
 
-void Model::addNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, 
+void Model::addNewSensore(const std::string &Type, const std::string &Nome, unsigned int Precisione, 
                           double MinValidTemperatura, double MaxValidTemperatura, 
                           int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
                           int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
                           int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH) const {
+    unsigned int ID=0;
+    const std::vector<Sensore *>* sensori=collezioneSensori->getSensori();
+    for(auto it=sensori->begin();it!=sensori->end();++it){
+        
+    }
+
     collezioneSensori->addSensore(SensoreCreator::createSensore(Type, ID, Nome, Precisione, MinValidTemperatura, MaxValidTemperatura,
                                   MinValidAlcalinità, MaxValidAlcalinità, MinValidAcidità, MaxValidAcidità,
                                   MinValidOssigeno, MaxValidOssigeno, MinValidCO2, MaxValidCO2,
                                   MinValidUmidità, MaxValidUmidità, MinValidPH, MaxValidPH));
 }
 
-void Model::insertNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, 
+void Model::insertNewSensore(const std::string &Type, const std::string &Nome, unsigned int Precisione, 
                              double MinValidTemperatura, double MaxValidTemperatura, 
                              int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
                              int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
