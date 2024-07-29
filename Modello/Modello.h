@@ -24,7 +24,6 @@ public:
      * @brief addNewSensore:            aggiunge alla collezione e fa creare ad una classe apposita un sensore sulla base dei parametri in ingresso
      * @param Type:                     tipo del sensore da creare
      * @param Name:                     nome del sensore da creare
-     * @param ID:                       ID del sensore da creare
      * @param Precisione:               precisione del sensore, utilizzato nelle simulazioni
      * @param MinValidTemperatura:      valore minimo dell'intervallo valido di temperatura "salubre"
      * @param MaxValidTemperatura:      valore massimo dell'intervallo valido di temperatura "salubre"
@@ -43,7 +42,7 @@ public:
      * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per la temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto (basta una delle seguenti condizioni)-
      */
 
-    void addNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
+    void addNewSensore(const std::string &Type, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
         int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
         int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
         int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH) const;
@@ -52,7 +51,6 @@ public:
      * @brief insertNewSensore:         inserisce alla collezione e fa creare ad una classe apposita un sensore sulla base dei parametri in ingresso
      * @param Type:                     tipo del sensore da inserire
      * @param Name:                     nome del sensore da inserire
-     * @param ID:                       ID del sensore da inserire
      * @param Precisione:               precisione del sensore, utilizzato nelle simulazioni
      * @param MinValidTemperatura:      valore minimo dell'intervallo valido di temperatura "salubre"
      * @param MaxValidTemperatura:      valore massimo dell'intervallo valido di temperatura "salubre"
@@ -72,7 +70,7 @@ public:
      * @throw std::invalid_argument     se il nome è vuoto - se la precisione supera il 100% - se il range di valori per la temperatura, alcalinità, acidità, ossigeno, co2, umidità non è corretto-
      */
 
-    void insertNewSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTeMperatura, double MaxValidTeMperatura, 
+    void insertNewSensore(const std::string &Type, const std::string &Nome, unsigned int Precisione, double MinValidTeMperatura, double MaxValidTeMperatura, 
         int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
         int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
         int MinValidUMidità, int MaxValidUMidità, int MinValidPH, int MaxValidPH, unsigned int posizione);

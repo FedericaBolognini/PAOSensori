@@ -8,12 +8,14 @@ void Model::addNewSensore(const std::string &Type, const std::string &Nome, unsi
                           int MinValidAlcalinità, int MaxValidAlcalinità, int MinValidAcidità, int MaxValidAcidità, 
                           int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
                           int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH) const {
-    unsigned int ID=0;
-    const std::vector<Sensore *>* sensori=collezioneSensori->getSensori();
-    for(auto it=sensori->begin();it!=sensori->end();++it){
-        
+    unsigned int ID = 0;
+    const std::vector<Sensore >sensori = collezioneSensori->getSensori();
+    for (auto it = sensori->begin(); it != sensori->end(); ++it){
+        if (ID < (it)->getID())
+        {
+            ID = (it)->getID();
+        }
     }
-
     collezioneSensori->addSensore(SensoreCreator::createSensore(Type, ID, Nome, Precisione, MinValidTemperatura, MaxValidTemperatura,
                                   MinValidAlcalinità, MaxValidAlcalinità, MinValidAcidità, MaxValidAcidità,
                                   MinValidOssigeno, MaxValidOssigeno, MinValidCO2, MaxValidCO2,
@@ -26,6 +28,14 @@ void Model::insertNewSensore(const std::string &Type, const std::string &Nome, u
                              int MinValidOssigeno, int MaxValidOssigeno, int MinValidCO2, int MaxValidCO2,
                              int MinValidUmidità, int MaxValidUmidità, int MinValidPH, int MaxValidPH, 
                              unsigned int posizione) {
+    unsigned int ID = 0;
+    const std::vector<Sensore >sensori = collezioneSensori->getSensori();
+    for (auto it = sensori->begin(); it != sensori->end(); ++it){
+        if (ID < (it)->getID())
+        {
+            ID = (it)->getID();
+        }
+    }
     collezioneSensori->insertSensore(SensoreCreator::createSensore(Type, ID, Nome, Precisione, MinValidTemperatura, MaxValidTemperatura,
                                      MinValidAlcalinità, MaxValidAlcalinità, MinValidAcidità, MaxValidAcidità,
                                      MinValidOssigeno, MaxValidOssigeno, MinValidCO2, MaxValidCO2,
