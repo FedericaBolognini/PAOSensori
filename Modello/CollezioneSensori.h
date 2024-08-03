@@ -7,6 +7,7 @@
 #include "SensoreSuolo.h"
 #include <vector>
 #include <string>
+#include <climits>
 
 class CollezioneSensori {
 private:

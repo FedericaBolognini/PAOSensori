@@ -10,24 +10,24 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Modello/Sensore.cpp \
-    Modello/SensoreAcqua.cpp \
-    Modello/SensoreAria.cpp \
-    Modello/SensoreSuolo.cpp \
-    Modello/SensoreCreator.cpp \
-    Modello/CollezioneSensori.cpp \
-    Modello/Modello.cpp \
-    main.cpp \
+    ../Modello/Sensore.cpp \
+    ../Modello/SensoreAcqua.cpp \
+    ../Modello/SensoreAria.cpp \
+    ../Modello/SensoreSuolo.cpp \
+    ../Modello/SensoreCreator.cpp \
+    ../Modello/CollezioneSensori.cpp \
+    ../Modello/Modello.cpp \
+    ../main.cpp \
     vista.cpp
 
 HEADERS += \
-    Modello/Sensore.h \
-    Modello/SensoreAcqua.h \
-    Modello/SensoreAria.h \
-    Modello/SensoreSuolo.h \
-    Modello/SensoreCreator.h \
-    Modello/CollezioneSensori.h \
-    Modello/Modello.h \
+    ../Modello/Sensore.h \
+    ../Modello/SensoreAcqua.h \
+    ../Modello/SensoreAria.h \
+    ../Modello/SensoreSuolo.h \
+    ../Modello/SensoreCreator.h \
+    ../Modello/CollezioneSensori.h \
+    ../Modello/Modello.h \
     vista.h
 
 

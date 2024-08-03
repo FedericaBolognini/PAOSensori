@@ -1,4 +1,4 @@
-#include "sensorecreator.h"
+#include "SensoreCreator.h"
 
 
 Sensore *SensoreCreator::createSensore(const std::string &Type, unsigned int ID, const std::string &Nome, unsigned int Precisione, double MinValidTemperatura, double MaxValidTemperatura, 
