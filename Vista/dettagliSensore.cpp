@@ -32,6 +32,8 @@ DettagliSensore::DettagliSensore(QWidget *parent) : QWidget(parent)
 
     // Aggiunta grafico
     addChart(mainLayout);
+
+    setLayout(mainLayout);
 }
 
 DettagliSensore::~DettagliSensore() {}
