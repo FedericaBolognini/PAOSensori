@@ -20,6 +20,8 @@ TabellaSensori::TabellaSensori(QWidget *parent) : QWidget(parent)
     setLayout(mainLayout);
 }
 
+TabellaSensori::~TabellaSensori() {}
+
 void TabellaSensori::addFindSection(QVBoxLayout *layout)
 {
     searchBar = new QLineEdit(this);

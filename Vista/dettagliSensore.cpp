@@ -34,6 +34,8 @@ DettagliSensore::DettagliSensore(QWidget *parent) : QWidget(parent)
     addChart(mainLayout);
 }
 
+DettagliSensore::~DettagliSensore() {}
+
 void DettagliSensore::addLeftLabels(QVBoxLayout *layout)
 {
     nome = new QLabel("Nome:", this);
