@@ -56,6 +56,9 @@ private:
 
     // Aggiunta della tabella
     void addTable(QVBoxLayout *layout);
+
+    // Aggiunta bottoni
+    void addButtons(QHBoxLayout *layout);
 };
 
 #endif // TABELLA_SENSORI_H
