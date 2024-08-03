@@ -18,6 +18,7 @@
 #include <QHeaderView>
 #include <QSize>
 #include <tabellaSensori.h>
+#include <dettagliSensore.h>
 
 class Vista : public QWidget
 {
