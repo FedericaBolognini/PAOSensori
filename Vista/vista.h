@@ -34,6 +34,7 @@ private:
     void addLeftLabels(QVBoxLayout* layout);
     void addRightLabels(QVBoxLayout* layout);
     void addChart(QVBoxLayout* layout);
+    void addButtons(QHBoxLayout* layout);
 };
 
 #endif // VISTA_H

@@ -92,7 +92,7 @@ Vista::Vista(QWidget *parent) : QWidget(parent)
     // Creazione layout principale
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
-    / Aggiunta menù
+    // Aggiunta menù
     addMenus(mainLayout);
 
     // Creazione layout orizzontale principale
