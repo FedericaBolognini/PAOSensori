@@ -27,8 +27,8 @@ Vista::Vista(QWidget *parent) : QWidget(parent)
     horizontalmainLayout = new QHBoxLayout;
 
     // Aggiunta layout sinistro e destro al principale
-    horizontalmainLayout->addLayout(leftWidget);
-    horizontalmainLayout->addLayout(rightWidget);
+    horizontalmainLayout->addWidget(leftWidget);
+    horizontalmainLayout->addWidget(rightWidget);
     horizontalmainLayout->setStretch(0, 1);
     horizontalmainLayout->setStretch(1, 1);
 
