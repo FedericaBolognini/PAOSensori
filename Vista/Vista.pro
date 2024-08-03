@@ -18,7 +18,9 @@ SOURCES += \
     ../Modello/CollezioneSensori.cpp \
     ../Modello/Modello.cpp \
     ../main.cpp \
-    vista.cpp
+    vista.cpp \
+    tabellaSensori.cpp \
+    dettagliSensore.cpp
 
 HEADERS += \
     ../Modello/Sensore.h \
@@ -28,7 +30,9 @@ HEADERS += \
     ../Modello/SensoreCreator.h \
     ../Modello/CollezioneSensori.h \
     ../Modello/Modello.h \
-    vista.h
+    vista.h \
+    tabellaSensori.h \
+    dettagliSensore.h
 
 
 
