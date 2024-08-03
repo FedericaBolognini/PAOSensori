@@ -27,8 +27,13 @@ public:
 virtual ~Vista();
 signals:
 private:
-QMenuBar * addMenus();
-void addMenus(QVBoxLayout *mainLayout);
+    QMenuBar * addMenus();
+    void addMenus(QVBoxLayout *mainLayout);
+    void addFindSection(QVBoxLayout* layout);
+    void addTable(QVBoxLayout *layout);
+    void addLeftLabels(QVBoxLayout* layout);
+    void addRightLabels(QVBoxLayout* layout);
+    void addChart(QVBoxLayout* layout);
 };
 
 #endif // VISTA_H
