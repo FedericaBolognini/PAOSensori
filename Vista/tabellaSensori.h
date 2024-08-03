@@ -1,0 +1,61 @@
+#ifndef TABELLA_SENSORI_H
+#define TABELLA_SENSORI_H
+
+#include <QWidget>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QTableWidget>
+#include <QLabel>
+#include <QLineSeries>
+#include <QChart>
+#include <QChartView>
+#include <QPainter>
+#include <QHeaderView>
+#include <QSize>
+
+class TabellaSensori:public QWidget{
+    Q_OBJECT
+
+public:
+    explicit TabellaSensori(QWidget *parent=nullptr);
+
+virtual ~TabellaSensori();
+signals:
+private:
+    // Layout principale
+    QVBoxLayout* mainLayout;
+
+    // Layout bottoni
+    QHBoxLayout *bottomButtonLayout;
+
+    // Barra di ricerca
+    QLineEdit *searchBar;
+
+    // Bottone di ricerca
+    QPushButton *searchButton;
+
+    // Bottone di eliminazione
+    QPushButton *bottomButtonElimina;
+
+    // Bottone di modifica
+    QPushButton *bottomButtonModifica;
+
+    // Bottone di aggiunta
+    QPushButton *bottomButtonAggiungi;
+
+    // Tabella
+    QTableWidget *tableWidget;
+
+    // Aggiunta della sezione di ricerca
+    void addFindSection(QVBoxLayout* layout);
+
+    // Aggiunta della tabella
+    void addTable(QVBoxLayout *layout);
+};
+
+#endif // TABELLA_SENSORI_H

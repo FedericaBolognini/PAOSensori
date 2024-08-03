@@ -17,24 +17,35 @@
 #include <QPainter>
 #include <QHeaderView>
 #include <QSize>
+#include <tabellaSensori.h>
 
-class Vista:public QWidget{
+class Vista : public QWidget
+{
     Q_OBJECT
 
 public:
-    explicit Vista(QWidget *parent=nullptr);
+    explicit Vista(QWidget *parent = nullptr);
 
-virtual ~Vista();
+    virtual ~Vista();
 signals:
 private:
-    QMenuBar * addMenus();
+
+    // Barra dei menù
+    QMenuBar *menuBar;
+
+    // Menù dei file
+    QMenu *file;
+
+    // Layout principale
+    QVBoxLayout *mainLayout;
+
+    // Layout secondario
+    QHBoxLayout *horizontalmainLayout;
+
+    TabellaSensori *leftWidget;
+    DettagliSensore *rightWidget;
+
     void addMenus(QVBoxLayout *mainLayout);
-    void addFindSection(QVBoxLayout* layout);
-    void addTable(QVBoxLayout *layout);
-    void addLeftLabels(QVBoxLayout* layout);
-    void addRightLabels(QVBoxLayout* layout);
-    void addChart(QVBoxLayout* layout);
-    void addButtons(QHBoxLayout* layout);
 };
 
 #endif // VISTA_H
