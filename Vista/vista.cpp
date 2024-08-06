@@ -36,5 +36,13 @@ Vista::Vista(QWidget *parent) : QWidget(parent)
     mainLayout->setSpacing(0);
 
     setLayout(mainLayout);
+
+
 }
+
+void Vista::showWarning(const QString &message)
+{
+    QMessageBox::warning(this, "Errore", message,QMessageBox::Ok);
+}
+
 Vista::~Vista() {};

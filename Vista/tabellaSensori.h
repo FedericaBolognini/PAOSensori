@@ -17,12 +17,21 @@
 #include <QPainter>
 #include <QHeaderView>
 #include <QSize>
+#include <QMessageBox>
+#include <finestratipo.h>
+#include <sensoreacquadialog.h>
 
 class TabellaSensori:public QWidget{
     Q_OBJECT
 
 public:
     explicit TabellaSensori(QWidget *parent=nullptr);
+
+    /**
+     * @brief showWarning:          mostra a video i messaggi di errore dell'applicazione
+     * @param message:              messaggio di errore
+     */
+    void showWarning(const QString& message);
     virtual ~TabellaSensori();
 
 signals:
@@ -32,11 +41,9 @@ void richiestaModifica();
 void richiestaAggiungi();
 
 private slots:
-void aggiornaTabellaScrolabile();
+void aggiornaTabella();
 void evidenziaRigaCercata();
 void pulisciCampoRicerca();
-
-private slots:
 void gestisciRichiestaCerca();
 void gestisciRichiestaElimina();
 void gestisciRichiestaModifica();
@@ -77,7 +84,7 @@ private:
     void addButtons(QHBoxLayout *layout);
 
     //
-    voidsetupConnections();
+    void setupConnections();
 };
 
 #endif // TABELLA_SENSORI_H

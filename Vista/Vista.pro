@@ -17,7 +17,11 @@ SOURCES += \
     ../Modello/SensoreCreator.cpp \
     ../Modello/CollezioneSensori.cpp \
     ../Modello/Modello.cpp \
+    ../dialogvalues.cpp \
     ../main.cpp \
+    finestratipo.cpp \
+    sensoreacquadialog.cpp \
+    sensoredialog.cpp \
     vista.cpp \
     tabellaSensori.cpp \
     dettagliSensore.cpp
@@ -30,6 +34,11 @@ HEADERS += \
     ../Modello/SensoreCreator.h \
     ../Modello/CollezioneSensori.h \
     ../Modello/Modello.h \
+    ../action.h \
+    ../dialogvalues.h \
+    finestratipo.h \
+    sensoreacquadialog.h \
+    sensoredialog.h \
     vista.h \
     tabellaSensori.h \
     dettagliSensore.h

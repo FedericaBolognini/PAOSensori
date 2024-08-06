@@ -80,9 +80,9 @@ void DettagliSensore::addChart(QVBoxLayout *layout)
     chartView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     layout->addWidget(chartView);
 }
-void DettagliSensore::setupConnections();
+void DettagliSensore::setupConnections()
 {
-    connect(simula,&QPushButton::clicked,this,&dettagliSensore::gestisciRichiestaSimulazione);
+    connect(simula,&QPushButton::clicked,this,&DettagliSensore::gestisciRichiestaSimulazione);
 
 }
 void DettagliSensore::gestisciRichiestaSimulazione()
@@ -93,10 +93,7 @@ void DettagliSensore::aggiornaGrafico()
 {
     
 }
-void DettagliSensore::puntoSelezionato()
-{
 
-}
 void DettagliSensore::aggiornaDatiSensore()
 {
 

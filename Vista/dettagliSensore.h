@@ -28,11 +28,11 @@ virtual ~DettagliSensore();
 
 signals:
 void richiestaSimulazione();
-void puntoSelezionatoGrafico();
+void puntoSelezionato();
 
 public slots:
 void aggiornaDatiSensore();
-void aggionaGrafico();
+void aggiornaGrafico();
 void pulisciDettagli();
 
 private slots:

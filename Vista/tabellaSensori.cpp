@@ -17,6 +17,8 @@ TabellaSensori::TabellaSensori(QWidget *parent) : QWidget(parent)
     // Aggiunta layout bottoni al layout di sinistra
     mainLayout->addLayout(bottomButtonLayout);
 
+    setupConnections();
+
     setLayout(mainLayout);
 }
 
@@ -62,10 +64,10 @@ void TabellaSensori::addButtons(QHBoxLayout *layout)
 
 void TabellaSensori::setupConnections()
 {
-    connect(searchButton, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaCerca);
-    connect(bottomButtonElimina, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaElimina);
-    connect(bottomButtonModifica, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaModifica);
-    connect(bottomButtonAggiungi, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaAggiungi);   
+    connect(searchButton, SIGNAL(clicked()), this, SLOT(gestisciRichiestaCerca()));
+    connect(bottomButtonElimina, SIGNAL(clicked()), this, SLOT(gestisciRichiestaElimina()));
+    connect(bottomButtonModifica, SIGNAL(clicked()), this, SLOT(gestisciRichiestaModifica()));
+    connect(bottomButtonAggiungi, SIGNAL(clicked()), this, SLOT(gestisciRichiestaAggiungi()));
 }
 void TabellaSensori::gestisciRichiestaCerca()
 {
@@ -79,8 +81,24 @@ void TabellaSensori::gestisciRichiestaModifica()
 {
 
 }
+void TabellaSensori::gestisciRichiestaElimina()
+{
+
+}
 void TabellaSensori::gestisciRichiestaAggiungi()
 {
+    try {
+        bool ok = false;
+        QString type = finestraTipo::getTipo(this, &ok);
+        if(ok){
+            if(type == "Acqua"){
+                dialogValues valori = sensoreAcquaDialog::getValues(this, &ok, add ,nullptr);
+            }
+
+        }
+    } catch (std::runtime_error e) {
+        showWarning(e.what());
+    }
 
 }
 void TabellaSensori::aggiornaTabella()
@@ -90,5 +108,10 @@ void TabellaSensori::aggiornaTabella()
 void TabellaSensori::evidenziaRigaCercata()
 {
 
+}
+
+void TabellaSensori::showWarning(const QString &message)
+{
+    QMessageBox::warning(this, "Errore", message,QMessageBox::Ok);
 }
 

@@ -17,6 +17,7 @@
 #include <QPainter>
 #include <QHeaderView>
 #include <QSize>
+#include <QMessageBox>
 #include <tabellaSensori.h>
 #include <dettagliSensore.h>
 
@@ -26,6 +27,12 @@ class Vista : public QWidget
 
 public:
     explicit Vista(QWidget *parent = nullptr);
+
+    /**
+     * @brief showWarning:          mostra a video i messaggi di errore dell'applicazione
+     * @param message:              messaggio di errore
+     */
+    void showWarning(const QString& message);
 
     virtual ~Vista();
 signals:
