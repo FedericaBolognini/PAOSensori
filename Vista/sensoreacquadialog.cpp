@@ -60,6 +60,9 @@ sensoreAcquaDialog::sensoreAcquaDialog(QWidget *parent, action act, SensoreAcqua
     maxAciditàLabel->setFixedWidth(150);
     maxAciditàLabel->setFont(font);
 
+    addToLayout(minAlcalinitàLayout,minAlcalinitàLabel,minAlcalinità);
+    addToLayout(maxAlcalinitàLayout,maxAlcalinitàLabel,maxAlcalinità);
+    addToLayout(minAciditàLayout,minAciditàLabel,minAcidità);
     addToLayout(maxAciditàLayout,maxAciditàLabel,maxAcidità);
 
     this->setFixedSize(327,200);
