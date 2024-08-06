@@ -25,7 +25,19 @@ public:
     explicit DettagliSensore(QWidget *parent=nullptr);
 
 virtual ~DettagliSensore();
+
 signals:
+void richiestaSimulazione();
+void puntoSelezionatoGrafico();
+
+public slots:
+void aggiornaDatiSensore();
+void aggionaGrafico();
+void pulisciDettagli();
+
+private slots:
+void gestisciRichiestaSimulazione();
+
 private:
 
     // layout principale
@@ -73,10 +85,20 @@ private:
     // vista del grafico
     QChartView *chartView;
 
+    //aggiunta labels
     void addLeftLabels(QVBoxLayout* layout);
+
+    //aggiunta labels
     void addRightLabels(QVBoxLayout* layout);
+
+    //aggiunta grafico
     void addChart(QVBoxLayout* layout);
+
+    //aggiunta bottone simula
     void addButtons(QHBoxLayout* layout);
+    
+    //
+    void setupConnections();
 };
 
 #endif // DETTAGLI_SENSORE_H

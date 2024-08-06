@@ -23,9 +23,25 @@ class TabellaSensori:public QWidget{
 
 public:
     explicit TabellaSensori(QWidget *parent=nullptr);
+    virtual ~TabellaSensori();
 
-virtual ~TabellaSensori();
 signals:
+void richiestaCerca();
+void richiestaElimina();
+void richiestaModifica();
+void richiestaAggiungi();
+
+private slots:
+void aggiornaTabellaScrolabile();
+void evidenziaRigaCercata();
+void pulisciCampoRicerca();
+
+private slots:
+void gestisciRichiestaCerca();
+void gestisciRichiestaElimina();
+void gestisciRichiestaModifica();
+void gestisciRichiestaAggiungi();
+
 private:
     // Layout principale
     QVBoxLayout* mainLayout;
@@ -59,6 +75,9 @@ private:
 
     // Aggiunta bottoni
     void addButtons(QHBoxLayout *layout);
+
+    //
+    voidsetupConnections();
 };
 
 #endif // TABELLA_SENSORI_H

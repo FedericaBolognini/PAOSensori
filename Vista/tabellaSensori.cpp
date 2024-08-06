@@ -59,3 +59,36 @@ void TabellaSensori::addButtons(QHBoxLayout *layout)
     layout->setSpacing(10);
     layout->setContentsMargins(0, 5, 0, 5);
 }
+
+void TabellaSensori::setupConnections()
+{
+    connect(searchButton, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaCerca);
+    connect(bottomButtonElimina, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaElimina);
+    connect(bottomButtonModifica, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaModifica);
+    connect(bottomButtonAggiungi, &QPushButton::clicked, this, &TabellaSensori::gestisciRichiestaAggiungi);   
+}
+void TabellaSensori::gestisciRichiestaCerca()
+{
+
+}
+void TabellaSensori::pulisciCampoRicerca()
+{
+    
+}
+void TabellaSensori::gestisciRichiestaModifica()
+{
+
+}
+void TabellaSensori::gestisciRichiestaAggiungi()
+{
+
+}
+void TabellaSensori::aggiornaTabella()
+{
+
+}
+void TabellaSensori::evidenziaRigaCercata()
+{
+
+}
+
