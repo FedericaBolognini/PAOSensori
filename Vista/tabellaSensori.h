@@ -20,6 +20,8 @@
 #include <QMessageBox>
 #include <finestratipo.h>
 #include <sensoreacquadialog.h>
+#include <sensoreariadialog.h>
+#include <sensoresuolodialog.h>
 
 class TabellaSensori:public QWidget{
     Q_OBJECT

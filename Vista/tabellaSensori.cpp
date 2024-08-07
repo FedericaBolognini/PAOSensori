@@ -94,6 +94,12 @@ void TabellaSensori::gestisciRichiestaAggiungi()
             if(type == "Acqua"){
                 dialogValues valori = sensoreAcquaDialog::getValues(this, &ok, add ,nullptr);
             }
+            if(type == "Aria"){
+                dialogValues valori = sensoreAriaDialog::getValues(this, &ok, add ,nullptr);
+            }
+            if(type == "Suolo"){
+                dialogValues valori = sensoreSuoloDialog::getValues(this, &ok, add ,nullptr);
+            }
 
         }
     } catch (std::runtime_error e) {
