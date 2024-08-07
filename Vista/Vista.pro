@@ -21,6 +21,8 @@ SOURCES += \
     ../main.cpp \
     finestratipo.cpp \
     sensoreacquadialog.cpp \
+    sensoreariadialog.cpp \
+    sensoresuolodialog.cpp \
     sensoredialog.cpp \
     vista.cpp \
     tabellaSensori.cpp \
