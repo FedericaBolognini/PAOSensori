@@ -40,6 +40,8 @@ HEADERS += \
     ../dialogvalues.h \
     finestratipo.h \
     sensoreacquadialog.h \
+    sensoreariadialog.h \
+    sensoresuolodialog.h \
     sensoredialog.h \
     vista.h \
     tabellaSensori.h \
