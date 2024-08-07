@@ -15,14 +15,39 @@ void sensoreDialog::setupCommon(QBoxLayout* layout, action act, Sensore* sensore
     QFont font;
     font.setBold(true);
 
-    QLabel* nameLabel = new QLabel(QString("Nome"), this);
-    QLabel* precisionLabel = new QLabel(QString("Precisione"), this);
-    QLabel* minValidTempLabel = new QLabel(QString("Temperatura minima valida"), this);
-    QLabel* maxValidTempLabel  = new QLabel(QString("Temperatura massima valida"), this);
+    QLabel* nameLabel = new QLabel(QString("Nome:"), this);
+    nameLabel->setFont(font);
+    nameLabel->setFixedWidth(165);
+
+    QLabel* precisionLabel = new QLabel(QString("Precisione:"), this);
+    precisionLabel->setFont(font);
+    precisionLabel->setFixedWidth(165);
+
+    QLabel* minValidTempLabel = new QLabel(QString("Temperatura minima valida:"), this);
+    minValidTempLabel->setFont(font);
+    minValidTempLabel->setFixedWidth(165);
+
+    QLabel* maxValidTempLabel  = new QLabel(QString("Temperatura massima valida:"), this);
+    maxValidTempLabel->setFont(font);
+    maxValidTempLabel->setFixedWidth(165);
 
     precisione = new QDoubleSpinBox(this);
     minTemperatura = new QDoubleSpinBox(this);
     maxTemperatura = new QDoubleSpinBox(this);
+
+    precisione->setFixedWidth(165);
+    precisione->setMinimum(0.00);
+    precisione->setAlignment(Qt::AlignCenter);
+
+    minTemperatura->setFixedWidth(165);
+    minTemperatura->setMinimum(0.00);
+    minTemperatura->setMaximum(1000.00);
+    minTemperatura->setAlignment(Qt::AlignCenter);
+
+    maxTemperatura->setFixedWidth(165);
+    maxTemperatura->setMinimum(0.00);
+    maxTemperatura->setMaximum(1000.00);
+    maxTemperatura->setAlignment(Qt::AlignCenter);
 
     if (act == add)
     {
@@ -46,8 +71,7 @@ void sensoreDialog::setupCommon(QBoxLayout* layout, action act, Sensore* sensore
 
     }
 
-    nameLabel->setFont(font);
-    nome->setFixedWidth(150);
+    nome->setFixedWidth(165);
     nome->setAlignment(Qt::AlignCenter);
 
     addToLayout(nameLayout,nameLabel,nome);

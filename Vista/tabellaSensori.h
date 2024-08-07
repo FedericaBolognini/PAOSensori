@@ -19,9 +19,12 @@
 #include <QSize>
 #include <QMessageBox>
 #include <finestratipo.h>
+#include <finestrasensore.h>
 #include <sensoreacquadialog.h>
 #include <sensoreariadialog.h>
 #include <sensoresuolodialog.h>
+#include <iostream>
+#include <string>
 
 class TabellaSensori:public QWidget{
     Q_OBJECT
@@ -52,6 +55,8 @@ void gestisciRichiestaModifica();
 void gestisciRichiestaAggiungi();
 
 private:
+    std::vector<Sensore *>* sensori;
+
     // Layout principale
     QVBoxLayout* mainLayout;
 
@@ -85,7 +90,7 @@ private:
     // Aggiunta bottoni
     void addButtons(QHBoxLayout *layout);
 
-    //
+    // Collegamento segnali e slot
     void setupConnections();
 };
 

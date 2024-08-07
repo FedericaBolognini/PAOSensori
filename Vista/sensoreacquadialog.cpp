@@ -18,6 +18,26 @@ sensoreAcquaDialog::sensoreAcquaDialog(QWidget *parent, action act, SensoreAcqua
     minAcidità = new QDoubleSpinBox(this);
     maxAcidità = new QDoubleSpinBox(this);
 
+    minAlcalinità->setFixedWidth(165);
+    minAlcalinità->setMinimum(0.00);
+    minAlcalinità->setMaximum(1000.00);
+    minAlcalinità->setAlignment(Qt::AlignCenter);
+
+    maxAlcalinità->setFixedWidth(165);
+    maxAlcalinità->setMinimum(0.00);
+    maxAlcalinità->setMaximum(1000.00);
+    maxAlcalinità->setAlignment(Qt::AlignCenter);
+
+    minAcidità->setFixedWidth(165);
+    minAcidità->setMinimum(0.00);
+    minAcidità->setMaximum(1000.00);
+    minAcidità->setAlignment(Qt::AlignCenter);
+
+    maxAcidità->setFixedWidth(165);
+    maxAcidità->setMinimum(0.00);
+    maxAcidità->setMaximum(1000.00);
+    maxAcidità->setAlignment(Qt::AlignCenter);
+
     if (act != add)
     {
         minAlcalinità->setValue(sensore->getMinValidAlcalinità());
@@ -26,38 +46,20 @@ sensoreAcquaDialog::sensoreAcquaDialog(QWidget *parent, action act, SensoreAcqua
         maxAcidità->setValue(sensore->getMaxValidAcidità());
     }
 
-
-    minAlcalinità->setFixedWidth(150);
-    minAlcalinità->setMinimum(0.01);
-    minAlcalinità->setAlignment(Qt::AlignCenter);
-
-    maxAlcalinità->setFixedWidth(150);
-    maxAlcalinità->setMinimum(0.01);
-    maxAlcalinità->setAlignment(Qt::AlignCenter);
-
-    minAcidità->setFixedWidth(150);
-    minAcidità->setMinimum(0.01);
-    minAcidità->setAlignment(Qt::AlignCenter);
-
-    maxAcidità->setFixedWidth(150);
-    maxAcidità->setMinimum(0.01);
-    maxAcidità->setAlignment(Qt::AlignCenter);
-
-
     QLabel* minAlcalinitàLabel = new QLabel(QString("Alcalinità minima valida: "), this);
-    minAlcalinitàLabel->setFixedWidth(150);
+    minAlcalinitàLabel->setFixedWidth(165);
     minAlcalinitàLabel->setFont(font);
 
     QLabel* maxAlcalinitàLabel = new QLabel(QString("Alcalinità massima valida: "), this);
-    maxAlcalinitàLabel->setFixedWidth(150);
+    maxAlcalinitàLabel->setFixedWidth(165);
     maxAlcalinitàLabel->setFont(font);
 
     QLabel* minAciditàLabel = new QLabel(QString("Acidità minima valida: "), this);
-    minAciditàLabel->setFixedWidth(150);
+    minAciditàLabel->setFixedWidth(165);
     minAciditàLabel->setFont(font);
 
     QLabel* maxAciditàLabel = new QLabel(QString("Acidità massima valida: "), this);
-    maxAciditàLabel->setFixedWidth(150);
+    maxAciditàLabel->setFixedWidth(165);
     maxAciditàLabel->setFont(font);
 
     addToLayout(minAlcalinitàLayout,minAlcalinitàLabel,minAlcalinità);
@@ -65,7 +67,7 @@ sensoreAcquaDialog::sensoreAcquaDialog(QWidget *parent, action act, SensoreAcqua
     addToLayout(minAciditàLayout,minAciditàLabel,minAcidità);
     addToLayout(maxAciditàLayout,maxAciditàLabel,maxAcidità);
 
-    this->setFixedSize(327,200);
+    this->setFixedSize(500,300);
 
     mainL->addLayout(minAlcalinitàLayout);
     mainL->addLayout(maxAlcalinitàLayout);

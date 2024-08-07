@@ -1,6 +1,6 @@
 #include "sensoreariadialog.h"
 
-sensoreAriaDialog::sensoreAriaDialog(QWidget *parent, action act, sensoreAria* sensore)
+sensoreAriaDialog::sensoreAriaDialog(QWidget *parent, action act, SensoreAria* sensore)
     : sensoreDialog(parent)
 {
     setupCommon(mainL,act,sensore);
@@ -18,46 +18,50 @@ sensoreAriaDialog::sensoreAriaDialog(QWidget *parent, action act, sensoreAria* s
     minOssigeno = new QDoubleSpinBox(this);
     maxOssigeno = new QDoubleSpinBox(this);
 
+
+    minCO2->setFixedWidth(165);
+    minCO2->setMinimum(0.00);
+    minCO2->setMaximum(1000.00);
+    minCO2->setAlignment(Qt::AlignCenter);
+
+    maxCO2->setFixedWidth(165);
+    maxCO2->setMinimum(0.00);
+    maxCO2->setMaximum(1000.00);
+    maxCO2->setAlignment(Qt::AlignCenter);
+
+    minOssigeno->setFixedWidth(165);
+    minOssigeno->setMinimum(0.00);
+    minOssigeno->setMaximum(1000.00);
+    minOssigeno->setAlignment(Qt::AlignCenter);
+
+    maxOssigeno->setFixedWidth(165);
+    maxOssigeno->setMinimum(0.00);
+    maxOssigeno->setMaximum(1000.00);
+    maxOssigeno->setAlignment(Qt::AlignCenter);
+
     if (act != add)
     {
-        minCO2->setValue(sensore->getMinCO2());
+        minCO2->setValue(sensore->getMinValidCO2());
         maxCO2->setValue(sensore->getMaxValidCO2());
         minOssigeno->setValue(sensore->getMinValidOssigeno());
         maxOssigeno->setValue(sensore->getMaxValidOssigeno());
     }
 
 
-    minCO2->setFixedWidth(150);
-    minCO2->setMinimum(0.01);
-    minCO2->setAlignment(Qt::AlignCenter);
-
-    maxCO2->setFixedWidth(150);
-    maxCO2->setMinimum(0.01);
-    maxCO2->setAlignment(Qt::AlignCenter);
-
-    minOssigeno->setFixedWidth(150);
-    minOssigeno->setMinimum(0.01);
-    minOssigeno->setAlignment(Qt::AlignCenter);
-
-    maxOssigeno->setFixedWidth(150);
-    maxOssigeno->setMinimum(0.01);
-    maxOssigeno->setAlignment(Qt::AlignCenter);
-
-
     QLabel* minCO2Label = new QLabel(QString("CO2 minimo valido: "), this);
-    minCO2Label->setFixedWidth(150);
+    minCO2Label->setFixedWidth(165);
     minCO2Label->setFont(font);
 
     QLabel* maxCO2Label = new QLabel(QString("CO2 massimo valido: "), this);
-    maxCO2Label->setFixedWidth(150);
+    maxCO2Label->setFixedWidth(165);
     maxCO2Label->setFont(font);
 
     QLabel* minOssigenoLabel = new QLabel(QString("Ossigeno minimo valido: "), this);
-    minOssigenoLabel->setFixedWidth(150);
+    minOssigenoLabel->setFixedWidth(165);
     minOssigenoLabel->setFont(font);
 
     QLabel* maxOssigenoLabel = new QLabel(QString("Ossigeno massimo valido: "), this);
-    maxOssigenoLabel->setFixedWidth(150);
+    maxOssigenoLabel->setFixedWidth(165);
     maxOssigenoLabel->setFont(font);
 
     addToLayout(minCO2Layout,minCO2Label,minCO2);
@@ -65,7 +69,7 @@ sensoreAriaDialog::sensoreAriaDialog(QWidget *parent, action act, sensoreAria* s
     addToLayout(minOssigenoLayout,minOssigenoLabel,minOssigeno);
     addToLayout(maxOssigenoLayout,maxOssigenoLabel,maxOssigeno);
 
-    this->setFixedSize(327,200);
+    this->setFixedSize(500,300);
 
     mainL->addLayout(minCO2Layout);
     mainL->addLayout(maxCO2Layout);

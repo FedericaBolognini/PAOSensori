@@ -18,6 +18,27 @@ sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, SensoreSuolo
     minPH = new QDoubleSpinBox(this);
     maxPH = new QDoubleSpinBox(this);
 
+
+    minUmidità->setFixedWidth(165);
+    minUmidità->setMinimum(0.00);
+    minUmidità->setMaximum(1000.00);
+    minUmidità->setAlignment(Qt::AlignCenter);
+
+    maxUmidità->setFixedWidth(165);
+    maxUmidità->setMinimum(0.00);
+    maxUmidità->setMaximum(1000.00);
+    maxUmidità->setAlignment(Qt::AlignCenter);
+
+    minPH->setFixedWidth(165);
+    minPH->setMinimum(0.00);
+    minPH->setMaximum(1000.00);
+    minPH->setAlignment(Qt::AlignCenter);
+
+    maxPH->setFixedWidth(165);
+    maxPH->setMinimum(0.00);
+    maxPH->setMaximum(1000.00);
+    maxPH->setAlignment(Qt::AlignCenter);
+
     if (act != add)
     {
         minUmidità->setValue(sensore->getMinValidUmidità());
@@ -27,37 +48,20 @@ sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, SensoreSuolo
     }
 
 
-    minUmidità->setFixedWidth(150);
-    minUmidità->setMinimum(0.01);
-    minUmidità->setAlignment(Qt::AlignCenter);
-
-    maxUmidità->setFixedWidth(150);
-    maxUmidità->setMinimum(0.01);
-    maxUmidità->setAlignment(Qt::AlignCenter);
-
-    minPH->setFixedWidth(150);
-    minPH->setMinimum(0.01);
-    minPH->setAlignment(Qt::AlignCenter);
-
-    maxPH->setFixedWidth(150);
-    maxPH->setMinimum(0.01);
-    maxPH->setAlignment(Qt::AlignCenter);
-
-
     QLabel* minUmiditàLabel = new QLabel(QString("Umidità minima valida: "), this);
-    minUmiditàLabel->setFixedWidth(150);
+    minUmiditàLabel->setFixedWidth(165);
     minUmiditàLabel->setFont(font);
 
     QLabel* maxUmiditàLabel = new QLabel(QString("Umidità massima valida: "), this);
-    maxUmiditàLabel->setFixedWidth(150);
+    maxUmiditàLabel->setFixedWidth(165);
     maxUmiditàLabel->setFont(font);
 
     QLabel* minPHLabel = new QLabel(QString("PH minimo valido: "), this);
-    minPHLabel->setFixedWidth(150);
+    minPHLabel->setFixedWidth(165);
     minPHLabel->setFont(font);
 
     QLabel* maxPHLabel = new QLabel(QString("PH massimo valido: "), this);
-    maxPHLabel->setFixedWidth(150);
+    maxPHLabel->setFixedWidth(165);
     maxPHLabel->setFont(font);
 
     addToLayout(minUmiditàLayout,minUmiditàLabel,minUmidità);
@@ -65,7 +69,7 @@ sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, SensoreSuolo
     addToLayout(minPHLayout,minPHLabel,minPH);
     addToLayout(maxPHLayout,maxPHLabel,maxPH);
 
-    this->setFixedSize(327,200);
+    this->setFixedSize(500,300);
 
     mainL->addLayout(minUmiditàLayout);
     mainL->addLayout(maxUmiditàLayout);

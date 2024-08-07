@@ -19,6 +19,7 @@ SOURCES += \
     ../Modello/Modello.cpp \
     ../dialogvalues.cpp \
     ../main.cpp \
+    finestrasensore.cpp \
     finestratipo.cpp \
     sensoreacquadialog.cpp \
     sensoreariadialog.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     ../Modello/Modello.h \
     ../action.h \
     ../dialogvalues.h \
+    finestrasensore.h \
     finestratipo.h \
     sensoreacquadialog.h \
     sensoreariadialog.h \
