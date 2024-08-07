@@ -104,8 +104,67 @@ void TabellaSensori::setupConnections()
     connect(bottomButtonModifica, SIGNAL(clicked()), this, SLOT(gestisciRichiestaModifica()));
     connect(bottomButtonAggiungi, SIGNAL(clicked()), this, SLOT(gestisciRichiestaAggiungi()));
 }
+
+void TabellaSensori::pulisciTabella()
+{
+    unsigned int dimensioneTabella = tableWidget->rowCount();
+    for(unsigned int i=0; i < dimensioneTabella; i++){
+        tableWidget->removeRow(0);
+    }
+}
 void TabellaSensori::gestisciRichiestaCerca()
 {
+    QString searchText = searchBar->text();
+    pulisciTabella();
+
+    if(searchText != ""){
+        std::vector<Sensore*> aux;
+
+        for(Sensore* sensore: *sensori){
+            std::string tipo = typeid(*sensore).name();
+            tipo = tipo.substr(9);
+
+            if(sensore->getNome() == searchText.toStdString() || tipo == searchText.toStdString()){
+                aux.push_back(sensore);
+            }
+        }
+
+        for(Sensore* sensore: aux) {
+            int currentRowCount = tableWidget->rowCount();
+            tableWidget->insertRow(currentRowCount);
+
+            std::string tipo = typeid(*sensore).name();
+            tipo = tipo.substr(9);
+            std::string id = std::to_string(sensore->getID());
+            std::string precisione = std::to_string(sensore->getPrecisione());
+            std::string qualità = std::to_string(sensore->Qualità());
+
+            tableWidget->setItem(currentRowCount, 0, new QTableWidgetItem(QString::fromStdString(sensore->getNome())));
+            tableWidget->setItem(currentRowCount, 1, new QTableWidgetItem(QString::fromStdString(tipo)));
+            tableWidget->setItem(currentRowCount, 2, new QTableWidgetItem(QString::fromStdString(id)));
+            tableWidget->setItem(currentRowCount, 3, new QTableWidgetItem(QString::fromStdString(precisione)));
+            tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
+        };
+    } else {
+        for(Sensore* sensore: *sensori) {
+            int currentRowCount = tableWidget->rowCount();
+            tableWidget->insertRow(currentRowCount);
+
+            std::string tipo = typeid(*sensore).name();
+            tipo = tipo.substr(9);
+            std::string id = std::to_string(sensore->getID());
+            std::string precisione = std::to_string(sensore->getPrecisione());
+            std::string qualità = std::to_string(sensore->Qualità());
+
+            tableWidget->setItem(currentRowCount, 0, new QTableWidgetItem(QString::fromStdString(sensore->getNome())));
+            tableWidget->setItem(currentRowCount, 1, new QTableWidgetItem(QString::fromStdString(tipo)));
+            tableWidget->setItem(currentRowCount, 2, new QTableWidgetItem(QString::fromStdString(id)));
+            tableWidget->setItem(currentRowCount, 3, new QTableWidgetItem(QString::fromStdString(precisione)));
+            tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
+        };
+    }
+
+
 
 }
 void TabellaSensori::pulisciCampoRicerca()

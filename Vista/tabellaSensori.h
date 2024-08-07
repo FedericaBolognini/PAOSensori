@@ -92,6 +92,9 @@ private:
 
     // Collegamento segnali e slot
     void setupConnections();
+
+    // Metodo per rimuovere tutti gli elementi dalla tabella
+    void pulisciTabella();
 };
 
 #endif // TABELLA_SENSORI_H
