@@ -54,9 +54,11 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
 {
     tableWidget = new QTableWidget(0, 5, this);
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Nome" << "Tipo" << "ID" << "Precisione" << "Qualità");
-    // tableWidget->setVerticalHeaderLabels(QStringList()<<"Sensore Acqua"<<"Sensore Aria"<<"Sensore Suolo");//?
-    tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    //tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableWidget->setTextAlignment(Qt::AlignCenter);
+    tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
 
     for(Sensore* sensore: *sensori) {
         int currentRowCount = tableWidget->rowCount();
@@ -75,8 +77,8 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
         tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
     };
 
-
-    layout->addWidget(tableWidget, 0, Qt::AlignBottom);
+ 
+    layout->addWidget(tableWidget, 1)
 }
 
 void TabellaSensori::addButtons(QHBoxLayout *layout)

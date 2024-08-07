@@ -10,6 +10,7 @@
 #include <QLineEdit>
 #include <QPushButton>
 #include <QTableWidget>
+#include <QAbstractItemView>
 #include <QLabel>
 #include <QLineSeries>
 #include <QChart>
