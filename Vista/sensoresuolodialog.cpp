@@ -1,6 +1,6 @@
 #include "sensoresuolodialog.h"
 
-sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, sensoreSuolo* sensore)
+sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, SensoreSuolo* sensore)
     : sensoreDialog(parent)
 {
     setupCommon(mainL,act,sensore);
@@ -74,7 +74,7 @@ sensoreSuoloDialog::sensoreSuoloDialog(QWidget *parent, action act, sensoreSuolo
     addButtons();
 }
 
-dialogValues sensoreSuoloDialog::getValues(QWidget *parent, bool *ok, action act, sensoreSuolo *sensore)
+dialogValues sensoreSuoloDialog::getValues(QWidget *parent, bool *ok, action act, SensoreSuolo *sensore)
 {
     sensoreSuoloDialog *dialog = new sensoreSuoloDialog(parent,act,sensore);
 

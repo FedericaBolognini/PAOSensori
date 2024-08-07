@@ -74,7 +74,7 @@ sensoreAriaDialog::sensoreAriaDialog(QWidget *parent, action act, sensoreAria* s
     addButtons();
 }
 
-dialogValues sensoreAriaDialog::getValues(QWidget *parent, bool *ok, action act, sensoreAria *sensore)
+dialogValues sensoreAriaDialog::getValues(QWidget *parent, bool *ok, action act, SensoreAria *sensore)
 {
     sensoreAriaDialog *dialog = new sensoreAriaDialog(parent,act,sensore);
 

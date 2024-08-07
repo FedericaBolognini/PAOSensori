@@ -2,7 +2,7 @@
 #define SENSOREARIADIALOG_H
 
 #include "sensoredialog.h"
-#include "../dialogValues.h"
+#include "../dialogvalues.h"
 #include <QObject>
 
 class sensoreAriaDialog : public sensoreDialog

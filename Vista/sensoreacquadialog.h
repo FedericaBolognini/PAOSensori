@@ -2,7 +2,7 @@
 #define SENSOREACQUADIALOG_H
 
 #include "sensoredialog.h"
-#include "../dialogValues.h"
+#include "../dialogvalues.h"
 #include <QObject>
 
 class sensoreAcquaDialog : public sensoreDialog
