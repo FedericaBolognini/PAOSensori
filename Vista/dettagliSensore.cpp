@@ -60,7 +60,7 @@ void DettagliSensore::aggiornaSensore(Sensore *sensore)
 
         out << std::fixed << std::setprecision(2) << sensore->getMaxValidTemperatura();
         std::string tempMaxSensore = out.str();
-        std::string qualitàSensore = std::to_string(sensore->Qualità());
+        std::string qualitàSensore = std::to_string(sensoreAttivo->Qualità());
 
         nome->setText("Nome: " + QString::fromStdString(sensoreAttivo->getNome()));
         tipo->setText("Tipo: " + QString::fromStdString(tipoSensore));
