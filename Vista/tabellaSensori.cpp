@@ -116,6 +116,7 @@ void TabellaSensori::setupConnections()
     connect(bottomButtonElimina, SIGNAL(clicked()), this, SLOT(gestisciRichiestaElimina()));
     connect(bottomButtonModifica, SIGNAL(clicked()), this, SLOT(gestisciRichiestaModifica()));
     connect(bottomButtonAggiungi, SIGNAL(clicked()), this, SLOT(gestisciRichiestaAggiungi()));
+    connect(tableWidget, SIGNAL(cellDoubleClicked(int, int)), this, SLOT(cellDoubleClicked(int, int)));
 }
 
 void TabellaSensori::pulisciTabella()
@@ -301,13 +302,25 @@ void TabellaSensori::aggiornaTabella()
 {
 
 }
-void TabellaSensori::evidenziaRigaCercata()
-{
-
-}
 
 void TabellaSensori::showWarning(const QString &message)
 {
     QMessageBox::warning(this, "Errore", message,QMessageBox::Ok);
 }
 
+void TabellaSensori::cellDoubleClicked(int iRow, int iColumn)
+{
+    tableWidget->setRangeSelected(QTableWidgetSelectionRange(iRow, 0, iRow, tableWidget->columnCount() - 1), 1);
+    unsigned int idSensore =  std::stoi(tableWidget->item(iRow, 2)->text().toStdString());
+
+    Sensore* sensoreSelezionato = nullptr;
+
+    for(Sensore* sensore: *sensori){
+        if(sensore->getID() == idSensore){
+            sensoreSelezionato = sensore;
+            break;
+        }
+    }
+
+
+}

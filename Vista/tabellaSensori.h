@@ -48,12 +48,12 @@ void richiestaAggiungi();
 
 private slots:
 void aggiornaTabella();
-void evidenziaRigaCercata();
 void pulisciCampoRicerca();
 void gestisciRichiestaCerca();
 void gestisciRichiestaElimina();
 void gestisciRichiestaModifica();
 void gestisciRichiestaAggiungi();
+void cellDoubleClicked(int iRow, int iColumn);
 
 private:
     std::vector<Sensore *>* sensori;
