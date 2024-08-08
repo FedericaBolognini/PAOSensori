@@ -89,7 +89,7 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
     };
 
 
-    layout->addWidget(tableWidget, 1);
+    layout->addWidget(tableWidget);
 }
 
 void TabellaSensori::addButtons(QHBoxLayout *layout)
