@@ -36,6 +36,11 @@ public:
 
     virtual ~Vista();
 signals:
+    void selezioneSensore(Sensore*);
+
+private slots:
+
+
 private:
 
     // Barra dei menù
@@ -54,6 +59,8 @@ private:
     DettagliSensore *rightWidget;
 
     void addMenus(QVBoxLayout *mainLayout);
+
+    void setupConnections();
 };
 
 #endif // VISTA_H

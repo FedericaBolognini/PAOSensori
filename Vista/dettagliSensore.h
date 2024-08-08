@@ -17,6 +17,10 @@
 #include <QPainter>
 #include <QHeaderView>
 #include <QSize>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include "../Modello/Sensore.h"
 
 class DettagliSensore:public QWidget{
     Q_OBJECT
@@ -31,14 +35,15 @@ void richiestaSimulazione();
 void puntoSelezionato();
 
 public slots:
-void aggiornaDatiSensore();
-void aggiornaGrafico();
-void pulisciDettagli();
+void aggiornaSensore(Sensore* sensore);
 
 private slots:
 void gestisciRichiestaSimulazione();
 
 private:
+
+    // Sensore attivo
+    Sensore* sensoreAttivo = nullptr;
 
     // layout principale
     QVBoxLayout *mainLayout;

@@ -35,9 +35,16 @@ Vista::Vista(QWidget *parent) : QWidget(parent)
     mainLayout->addLayout(horizontalmainLayout);
     mainLayout->setSpacing(0);
 
+    setupConnections();
+
     setLayout(mainLayout);
 
 
+}
+
+void Vista::setupConnections()
+{
+    connect(leftWidget, SIGNAL(selezioneSensore(Sensore*)), this, SIGNAL(selezioneSensore(Sensore*)));
 }
 
 void Vista::showWarning(const QString &message)
@@ -45,4 +52,4 @@ void Vista::showWarning(const QString &message)
     QMessageBox::warning(this, "Errore", message,QMessageBox::Ok);
 }
 
-Vista::~Vista() {};
+Vista::~Vista() {}

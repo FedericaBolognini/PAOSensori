@@ -41,10 +41,7 @@ public:
     virtual ~TabellaSensori();
 
 signals:
-void richiestaCerca();
-void richiestaElimina();
-void richiestaModifica();
-void richiestaAggiungi();
+void selezioneSensore(Sensore*);
 
 private slots:
 void aggiornaTabella();

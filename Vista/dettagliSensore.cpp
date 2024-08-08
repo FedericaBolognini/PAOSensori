@@ -33,10 +33,44 @@ DettagliSensore::DettagliSensore(QWidget *parent) : QWidget(parent)
     // Aggiunta grafico
     addChart(mainLayout);
 
+    setupConnections();
+
     setLayout(mainLayout);
 }
 
 DettagliSensore::~DettagliSensore() {}
+
+void DettagliSensore::aggiornaSensore(Sensore *sensore)
+{
+    sensoreAttivo = sensore;
+
+    if(sensoreAttivo){
+        std::string tipoSensore = typeid(*sensore).name();
+        tipoSensore = tipoSensore.substr(9);
+
+        std::string idSensore = std::to_string(sensore->getID());
+        std::string precisioneSensore = std::to_string(sensore->getPrecisione());
+
+        std::ostringstream out;
+        out << std::fixed << std::setprecision(2) << sensore->getMinValidTemperatura();
+        std::string tempMinSensore = out.str();
+
+        out.str("");
+        out.clear();
+
+        out << std::fixed << std::setprecision(2) << sensore->getMaxValidTemperatura();
+        std::string tempMaxSensore = out.str();
+        std::string qualitàSensore = std::to_string(sensore->Qualità());
+
+        nome->setText("Nome: " + QString::fromStdString(sensoreAttivo->getNome()));
+        tipo->setText("Tipo: " + QString::fromStdString(tipoSensore));
+        id->setText("ID: " + QString::fromStdString(idSensore));
+        precisione->setText(("Precisione: " + QString::fromStdString(precisioneSensore + "%")));
+        mintemperatura->setText(("Temperatura minima: " + QString::fromStdString(tempMinSensore) + "°C"));
+        maxtemperatura->setText(("Temperatura massima: " + QString::fromStdString(tempMaxSensore) + "°C"));
+        qualità->setText(("Qualità: " + QString::fromStdString(qualitàSensore)));
+    }
+}
 
 void DettagliSensore::addLeftLabels(QVBoxLayout *layout)
 {
@@ -83,22 +117,10 @@ void DettagliSensore::addChart(QVBoxLayout *layout)
 void DettagliSensore::setupConnections()
 {
     connect(simula,&QPushButton::clicked,this,&DettagliSensore::gestisciRichiestaSimulazione);
+    connect(this->parent(), SIGNAL(selezioneSensore(Sensore*)), this, SLOT(aggiornaSensore(Sensore*)));
 
 }
 void DettagliSensore::gestisciRichiestaSimulazione()
 {
 
-}
-void DettagliSensore::aggiornaGrafico()
-{
-    
-}
-
-void DettagliSensore::aggiornaDatiSensore()
-{
-
-}
-void DettagliSensore::pulisciDettagli()
-{
-    
 }

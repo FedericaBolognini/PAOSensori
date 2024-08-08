@@ -7,8 +7,9 @@ TabellaSensori::TabellaSensori(QWidget *parent) : QWidget(parent)
 
     Sensore* s1 = new SensoreAcqua("Acqua1", 95, 1, 15.0, 40.0, 850, 950, 220000, 290000);
     Sensore* s2 = new SensoreAria("Aria1", 90, 2, 10.0, 35.0, 300, 500, 19, 21);
-    Sensore* s4 = new SensoreSuolo("Suolo1", 90, 2, 10.0, 35.0, 300, 500, 19, 21);
+    Sensore* s4 = new SensoreSuolo("Suolo1", 90, 4, 10.0, 35.0, 300, 500, 19, 21);
     Sensore* s3 = s1->clone();
+    s3->setID(3);
     s3->setNome("Acqua2");
 
     sensori = new std::vector<Sensore*>();
@@ -322,5 +323,8 @@ void TabellaSensori::cellDoubleClicked(int iRow, int iColumn)
         }
     }
 
+    if(sensoreSelezionato){
+        emit selezioneSensore(sensoreSelezionato);
+    }
 
 }
