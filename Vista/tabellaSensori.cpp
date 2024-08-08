@@ -57,7 +57,6 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
     tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     //tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    tableWidget->setTextAlignment(Qt::AlignCenter);
     tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
 
     for(Sensore* sensore: *sensori) {
@@ -70,15 +69,27 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
         std::string precisione = std::to_string(sensore->getPrecisione());
         std::string qualità = std::to_string(sensore->Qualità());
 
-        tableWidget->setItem(currentRowCount, 0, new QTableWidgetItem(QString::fromStdString(sensore->getNome())));
-        tableWidget->setItem(currentRowCount, 1, new QTableWidgetItem(QString::fromStdString(tipo)));
-        tableWidget->setItem(currentRowCount, 2, new QTableWidgetItem(QString::fromStdString(id)));
-        tableWidget->setItem(currentRowCount, 3, new QTableWidgetItem(QString::fromStdString(precisione)));
-        tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
+        QTableWidgetItem* nome = new QTableWidgetItem(QString::fromStdString(sensore->getNome()));
+        QTableWidgetItem* tipoItem = new QTableWidgetItem(QString::fromStdString(tipo));
+        QTableWidgetItem* idItem = new QTableWidgetItem(QString::fromStdString(id));
+        QTableWidgetItem* precisioneItem = new QTableWidgetItem(QString::fromStdString(precisione));
+        QTableWidgetItem* qualitàItem = new QTableWidgetItem(QString::fromStdString(qualità));
+
+        nome->setTextAlignment(Qt::AlignCenter);
+        tipoItem->setTextAlignment(Qt::AlignCenter);
+        idItem->setTextAlignment(Qt::AlignCenter);
+        precisioneItem->setTextAlignment(Qt::AlignCenter);
+        qualitàItem->setTextAlignment(Qt::AlignCenter);
+
+        tableWidget->setItem(currentRowCount, 0, nome);
+        tableWidget->setItem(currentRowCount, 1, tipoItem);
+        tableWidget->setItem(currentRowCount, 2, idItem);
+        tableWidget->setItem(currentRowCount, 3, precisioneItem);
+        tableWidget->setItem(currentRowCount, 4, qualitàItem);
     };
 
- 
-    layout->addWidget(tableWidget, 1)
+
+    layout->addWidget(tableWidget, 1);
 }
 
 void TabellaSensori::addButtons(QHBoxLayout *layout)
@@ -141,11 +152,23 @@ void TabellaSensori::gestisciRichiestaCerca()
             std::string precisione = std::to_string(sensore->getPrecisione());
             std::string qualità = std::to_string(sensore->Qualità());
 
-            tableWidget->setItem(currentRowCount, 0, new QTableWidgetItem(QString::fromStdString(sensore->getNome())));
-            tableWidget->setItem(currentRowCount, 1, new QTableWidgetItem(QString::fromStdString(tipo)));
-            tableWidget->setItem(currentRowCount, 2, new QTableWidgetItem(QString::fromStdString(id)));
-            tableWidget->setItem(currentRowCount, 3, new QTableWidgetItem(QString::fromStdString(precisione)));
-            tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
+            QTableWidgetItem* nome = new QTableWidgetItem(QString::fromStdString(sensore->getNome()));
+            QTableWidgetItem* tipoItem = new QTableWidgetItem(QString::fromStdString(tipo));
+            QTableWidgetItem* idItem = new QTableWidgetItem(QString::fromStdString(id));
+            QTableWidgetItem* precisioneItem = new QTableWidgetItem(QString::fromStdString(precisione));
+            QTableWidgetItem* qualitàItem = new QTableWidgetItem(QString::fromStdString(qualità));
+
+            nome->setTextAlignment(Qt::AlignCenter);
+            tipoItem->setTextAlignment(Qt::AlignCenter);
+            idItem->setTextAlignment(Qt::AlignCenter);
+            precisioneItem->setTextAlignment(Qt::AlignCenter);
+            qualitàItem->setTextAlignment(Qt::AlignCenter);
+
+            tableWidget->setItem(currentRowCount, 0, nome);
+            tableWidget->setItem(currentRowCount, 1, tipoItem);
+            tableWidget->setItem(currentRowCount, 2, idItem);
+            tableWidget->setItem(currentRowCount, 3, precisioneItem);
+            tableWidget->setItem(currentRowCount, 4, qualitàItem);
         };
     } else {
         for(Sensore* sensore: *sensori) {
@@ -158,11 +181,23 @@ void TabellaSensori::gestisciRichiestaCerca()
             std::string precisione = std::to_string(sensore->getPrecisione());
             std::string qualità = std::to_string(sensore->Qualità());
 
-            tableWidget->setItem(currentRowCount, 0, new QTableWidgetItem(QString::fromStdString(sensore->getNome())));
-            tableWidget->setItem(currentRowCount, 1, new QTableWidgetItem(QString::fromStdString(tipo)));
-            tableWidget->setItem(currentRowCount, 2, new QTableWidgetItem(QString::fromStdString(id)));
-            tableWidget->setItem(currentRowCount, 3, new QTableWidgetItem(QString::fromStdString(precisione)));
-            tableWidget->setItem(currentRowCount, 4, new QTableWidgetItem(QString::fromStdString(qualità)));
+            QTableWidgetItem* nome = new QTableWidgetItem(QString::fromStdString(sensore->getNome()));
+            QTableWidgetItem* tipoItem = new QTableWidgetItem(QString::fromStdString(tipo));
+            QTableWidgetItem* idItem = new QTableWidgetItem(QString::fromStdString(id));
+            QTableWidgetItem* precisioneItem = new QTableWidgetItem(QString::fromStdString(precisione));
+            QTableWidgetItem* qualitàItem = new QTableWidgetItem(QString::fromStdString(qualità));
+
+            nome->setTextAlignment(Qt::AlignCenter);
+            tipoItem->setTextAlignment(Qt::AlignCenter);
+            idItem->setTextAlignment(Qt::AlignCenter);
+            precisioneItem->setTextAlignment(Qt::AlignCenter);
+            qualitàItem->setTextAlignment(Qt::AlignCenter);
+
+            tableWidget->setItem(currentRowCount, 0, nome);
+            tableWidget->setItem(currentRowCount, 1, tipoItem);
+            tableWidget->setItem(currentRowCount, 2, idItem);
+            tableWidget->setItem(currentRowCount, 3, precisioneItem);
+            tableWidget->setItem(currentRowCount, 4, qualitàItem);
         };
     }
 
