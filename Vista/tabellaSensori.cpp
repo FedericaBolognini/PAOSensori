@@ -55,8 +55,8 @@ void TabellaSensori::addTable(QVBoxLayout *layout)
     tableWidget = new QTableWidget(0, 5, this);
     tableWidget->setHorizontalHeaderLabels(QStringList() << "Nome" << "Tipo" << "ID" << "Precisione" << "Qualità");
     tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    //tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     tableWidget->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
 
     for(Sensore* sensore: *sensori) {
