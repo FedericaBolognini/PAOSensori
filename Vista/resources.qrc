@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/fiber-optic-sensor.png</file>
+        <file>assets/temperature-control.png</file>
+        <file>assets/metering.png</file>
+    </qresource>
+</RCC>
